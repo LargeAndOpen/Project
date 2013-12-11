@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
+
 <project basedir="." default="main" name="TEST1">
+
+    <!-- 參數設定 -->
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="D:/Kevin/程式應用/程式設計/eclipse"/>
     <property name="junit.output.dir" value="junit"/>
@@ -13,9 +11,8 @@
     <property name="source" value="1.6"/>
     <property name="dist" location="dist"/>
     <property name="main-class" value="TEST1"/>
-    
-    
-    
+
+    <!-- Class Path設定 -->
     <path id="JUnit 4.libraryclasspath">
         <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar"/>
         <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
@@ -33,11 +30,14 @@
             </fileset>
         </copy>
     </target>
+    
+    <!-- 刪除資料夾 -->
     <target name="clean">
         <delete dir="bin"/>
     </target>
     <target depends="clean" name="cleanall"/>
-    <!--target depends="build-subprojects,build-project" name="build"/-->
+    
+    <!-- 編譯程式 -->
 	<target depends="dist" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
@@ -48,12 +48,9 @@
         </javac>
     </target>
     
-    <!-- 執行 -->
-    <target name="EXEC" depends="dist">
-        <java jar="${dist}\lib\${ant.project.name}.jar" fork="true"/>
-    </target>
-    
+    <!-- 產生JAR檔 -->
     <target name="dist" depends="build-subprojects,build-project" description="generate the distribution" >
+        
         <!-- 創建放置jar檔目錄 -->
         <mkdir dir="${dist}/lib"/>
         
@@ -65,7 +62,12 @@
         </jar>
     </target>
     
+    <!-- 執行程式 -->
+    <target name="EXEC" depends="dist">
+        <java jar="${dist}\lib\${ant.project.name}.jar" fork="true"/>
+    </target>
     
+
     
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
@@ -86,6 +88,8 @@
             <classpath refid="TEST1.classpath"/>
         </java>
     </target>
+    
+    <!-- JUnit測試 -->
     <target name="TEST1Test">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -94,6 +98,8 @@
             <classpath refid="TEST1.classpath"/>
         </junit>
     </target>
+    
+    <!-- 產生JUnit報表 -->
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
