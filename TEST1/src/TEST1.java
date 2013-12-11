@@ -25,121 +25,298 @@ import java.net.*;
 public class TEST1{
 	
 	
-	
-	
+	public class Foodinfo
+	{
+		
+		/*
+		獲取相關地區的美食資訊
+		取得第一個Element的名稱
+		*/
+		public String getFirstFoodinfofromCity(String City)throws JSONException, IOException
+		{
+			//美食Open data url
+			String foodurl="http://data.coa.gov.tw/od/data/api/eir01/?$format=json";
+			//要取前幾筆資料
+			 String top="&$top=";
+			 //要跳過幾筆資料
+			 String skip="&$skip=";
+			 //要以什麼做排序
+			 String Order="&$orderby=";
+			 //篩選某地區
+			 String filter="&$filter=";
+			  //中文字轉UTF-8格式
+			 City = java.net.URLEncoder.encode(City,"UTF-8");
+			 
+			 //篩選條件設定為City
+			 filter+="address+like+";
+			 filter+=City;
+			 foodurl = foodurl+top+skip+Order+filter;
+		
+			//將美食資訊存在food.txt
+			String foodfile = "food.txt";
+			getFilefromUrl(foodurl,foodfile);
+			
+			
+			File f = new File(foodfile);
+			
+			FileInputStream file= new FileInputStream(f);
+			InputStreamReader input =new InputStreamReader(file,"UTF-8");
+			
+			JSONTokener jt = new JSONTokener(input);
+			
+			JSONArray jsonRealPrice = new JSONArray(jt);
+			
+			String title=jsonRealPrice.getJSONObject(0).getString("title");
+			 
+			 return title;
+		}
+		public void printtop10fromCity(String City)throws JSONException, IOException
+		{
+			//美食Open data url
+			String foodurl="http://data.coa.gov.tw/od/data/api/eir01/?$format=json";
+			//要取前幾筆資料
+			 String top="&$top=";
+			 //要跳過幾筆資料
+			 String skip="&$skip=";
+			 //要以什麼做排序
+			 String Order="&$orderby=";
+			 //篩選某地區
+			 String filter="&$filter=";
+			  //中文字轉UTF-8格式
+			 City = java.net.URLEncoder.encode(City,"UTF-8");
+			 
+			 //篩選條件設定為City
+			 filter+="address+like+";
+			 filter+=City;
+			 foodurl = foodurl+top+skip+Order+filter;
+		
+			//將美食資訊存在food.txt
+			String foodfile = "food.txt";
+			getFilefromUrl(foodurl,foodfile);
+			File f = new File(foodfile);
+			
+			FileInputStream file= new FileInputStream(f);
+			InputStreamReader input =new InputStreamReader(file,"UTF-8");
+			
+			JSONTokener jt = new JSONTokener(input);
+			
+			JSONArray jsonRealPrice = new JSONArray(jt);
+			System.out.println("美食資訊");
+			for(int i = 0;i<jsonRealPrice.length()&&i<10;i++)
+			{
+				String title=jsonRealPrice.getJSONObject(i).getString("title");
+				System.out.println(title);
+				
+			}
+		}
+	}
+	public  Foodinfo getFoodinfo()
+	{
+		Foodinfo foodinfo = new Foodinfo();
+		return foodinfo;
+	}
+	public class Siteinfo
+	{
+		/*
+		獲取相關地區的景點資訊
+		取得第一個Element的名稱
+		*/
+		public String getFirstSiteinfofromCity(String City)throws JSONException, IOException
+		{
+			//景點Open data url
+			 String siteurl = "http://data.coa.gov.tw/od/data/api/eir04/?$format=json";
+			 //要取前幾筆資料
+			 String top="&$top=";
+			 //要跳過幾筆資料
+			 String skip="&$skip=";
+			 //要以什麼做排序
+			 String Order="&$orderby=";
+			 //篩選某地區
+			 String filter="&$filter=";
+			  //中文字轉UTF-8格式
+			 City = java.net.URLEncoder.encode(City,"UTF-8");
+			 
+			 //篩選條件設定為City
+			 filter+="address+like+";
+			 filter+=City;
+			 
+			 siteurl = siteurl+top+skip+Order+filter;
+			
+			//將景點資訊存在site.txt
+			String sitefile = "site.txt";
+			getFilefromUrl(siteurl,sitefile);
+			
+			File f1 = new File(sitefile);
+			
+			FileInputStream file1= new FileInputStream(f1);
+			InputStreamReader input1 =new InputStreamReader(file1,"UTF-8");
+			
+			JSONTokener jt1 = new JSONTokener(input1);
+			
+			JSONArray jsonRealPrice1 = new JSONArray(jt1);
+			String title=jsonRealPrice1.getJSONObject(0).getString("title");
+			return title;
+		}
+		
+		public void printtop10fromCity(String City)throws JSONException, IOException
+		{
+			//景點Open data url
+			 String siteurl = "http://data.coa.gov.tw/od/data/api/eir04/?$format=json";
+			 //要取前幾筆資料
+			 String top="&$top=";
+			 //要跳過幾筆資料
+			 String skip="&$skip=";
+			 //要以什麼做排序
+			 String Order="&$orderby=";
+			 //篩選某地區
+			 String filter="&$filter=";
+			  //中文字轉UTF-8格式
+			 City = java.net.URLEncoder.encode(City,"UTF-8");
+			 
+			 //篩選條件設定為City
+			 filter+="address+like+";
+			 filter+=City;
+			 
+			 siteurl = siteurl+top+skip+Order+filter;
+			
+			//將景點資訊存在site.txt
+			String sitefile = "site.txt";
+			getFilefromUrl(siteurl,sitefile);
+			
+			File f1 = new File(sitefile);
+			
+			FileInputStream file1= new FileInputStream(f1);
+			InputStreamReader input1 =new InputStreamReader(file1,"UTF-8");
+			
+			JSONTokener jt1 = new JSONTokener(input1);
+			
+			JSONArray jsonRealPrice1 = new JSONArray(jt1);
+			
+			System.out.println("景點資訊");
+			
+			for(int i = 0;i<jsonRealPrice1.length()&&i<10;i++)
+			{
+				String title=jsonRealPrice1.getJSONObject(i).getString("title");
+				System.out.println(title);
+				
+			}
+			
+		}
+	}
+	public  Siteinfo getSiteinfo()
+	{
+		 Siteinfo siteinfo= new Siteinfo();
+		return siteinfo;
+	}
+	public class Liveinfo
+	{
+		/*
+		獲取相關地區的住宿資訊
+		取得第一個Element的名稱
+		*/
+		public String getFirstLiveinfofromCity(String City)throws JSONException, IOException
+		{
+			 //住宿Open data url
+			 String liveurl= "http://data.coa.gov.tw/od/data/api/eir02/?$format=json";
+			 //要取前幾筆資料
+			 String top="&$top=";
+			 //要跳過幾筆資料
+			 String skip="&$skip=";
+			 //要以什麼做排序
+			 String Order="&$orderby=";
+			 //篩選某地區
+			 String filter="&$filter=";
+			  //中文字轉UTF-8格式
+			 City = java.net.URLEncoder.encode(City,"UTF-8");
+			 
+			 //篩選條件設定為City
+			 filter+="address+like+";
+			 filter+=City;
+			 liveurl = liveurl+top+skip+Order+filter;
+			
+			//將住宿資訊存在live.txt
+			String livefile = "live.txt";
+			getFilefromUrl(liveurl,livefile);
+			
+			File f2 = new File(livefile);
+			
+			FileInputStream file2= new FileInputStream(f2);
+			InputStreamReader input2 =new InputStreamReader(file2,"UTF-8");
+			
+			JSONTokener jt2 = new JSONTokener(input2);
+			
+			JSONArray jsonRealPrice2 = new JSONArray(jt2);
+			 String title=jsonRealPrice2.getJSONObject(0).getString("title");
+			return title;
+		}
+		public void printtop10fromCity(String City)throws JSONException, IOException
+		{
+			//住宿Open data url
+			 String liveurl= "http://data.coa.gov.tw/od/data/api/eir02/?$format=json";
+			 //要取前幾筆資料
+			 String top="&$top=";
+			 //要跳過幾筆資料
+			 String skip="&$skip=";
+			 //要以什麼做排序
+			 String Order="&$orderby=";
+			 //篩選某地區
+			 String filter="&$filter=";
+			  //中文字轉UTF-8格式
+			 City = java.net.URLEncoder.encode(City,"UTF-8");
+			 
+			 //篩選條件設定為City
+			 filter+="address+like+";
+			 filter+=City;
+			 liveurl = liveurl+top+skip+Order+filter;
+			
+			//將住宿資訊存在live.txt
+			String livefile = "live.txt";
+			getFilefromUrl(liveurl,livefile);
+			
+			File f2 = new File(livefile);
+			
+			FileInputStream file2= new FileInputStream(f2);
+			InputStreamReader input2 =new InputStreamReader(file2,"UTF-8");
+			
+			JSONTokener jt2 = new JSONTokener(input2);
+			
+			JSONArray jsonRealPrice2 = new JSONArray(jt2);
+			System.out.println("住宿資訊");
+			
+			for(int i = 0;i<jsonRealPrice2.length()&&i<10;i++)
+			{
+				String title=jsonRealPrice2.getJSONObject(i).getString("title");
+				System.out.println(title);
+				
+			}
+		}
+	}
+	public  Liveinfo getLiveinfo()
+	{
+		Liveinfo liveinfo= new Liveinfo();
+		return liveinfo;
+	}
 	public static void main(String[] args)throws JSONException, IOException
 	{
-	
-		
-		
-		
-		//Open data存放的資料網址
-		//美食Open data url
-		String foodurl="http://data.coa.gov.tw/od/data/api/eir01/?$format=json";
-		//景點Open data url
-		 String siteurl = "http://data.coa.gov.tw/od/data/api/eir04/?$format=json";
-		 //住宿Open data url
-		 String liveurl= "http://data.coa.gov.tw/od/data/api/eir02/?$format=json";
-		 
-		 
-		 //要取前幾筆資料
-		 String top="&$top=";
-		 //要跳過幾筆資料
-		 String skip="&$skip=";
-		 //要以什麼做排序
-		 String Order="&$orderby=";
-		 //篩選某地區
-		 String filter="&$filter=";
 		 //輸入
 		 BufferedReader buf = new BufferedReader(
             new InputStreamReader(System.in)); 
-			
-			
+
 		 System.out.print("請輸入城市:");
 		 
 		 //使用者輸入要搜尋的城市
 		 String City=buf.readLine();
-		 //中文字轉UTF-8格式
-		 City = java.net.URLEncoder.encode(City,"UTF-8");
+		
+		 TEST1 test = new TEST1();
+		 Foodinfo fi = test.getFoodinfo();
 		 
-		 
-		 
-		 //篩選條件設定為City
-		 filter+="address+like+";
-		 filter+=City;
-		 
-		 
-		foodurl = foodurl+top+skip+Order+filter;
+		 fi.printtop10fromCity(City);
+
+		Siteinfo si = test.getSiteinfo();
+		si.printtop10fromCity(City);
 	
-		//將美食資訊存在food.txt
-		String foodfile = "food.txt";
-		getFilefromUrl(foodurl,foodfile);
-		
-		
-		File f = new File(foodfile);
-		
-		FileInputStream file= new FileInputStream(f);
-		InputStreamReader input =new InputStreamReader(file,"UTF-8");
-		
-		JSONTokener jt = new JSONTokener(input);
-		
-		JSONArray jsonRealPrice = new JSONArray(jt);
-		
-		
-		System.out.println("美食資訊");
-		for(int i = 0;i<jsonRealPrice.length()&&i<10;i++)
-		{
-			String title=jsonRealPrice.getJSONObject(i).getString("title");
-			System.out.println(title);
-			
-		}
-		
-		siteurl = siteurl+top+skip+Order+filter;
-		
-		//將景點資訊存在site.txt
-		String sitefile = "site.txt";
-		getFilefromUrl(siteurl,sitefile);
-		
-		File f1 = new File(sitefile);
-		
-		FileInputStream file1= new FileInputStream(f1);
-		InputStreamReader input1 =new InputStreamReader(file1,"UTF-8");
-		
-		JSONTokener jt1 = new JSONTokener(input1);
-		
-		JSONArray jsonRealPrice1 = new JSONArray(jt1);
-		System.out.println("景點資訊");
-		
-		for(int i = 0;i<jsonRealPrice1.length()&&i<10;i++)
-		{
-			String title=jsonRealPrice1.getJSONObject(i).getString("title");
-			System.out.println(title);
-			
-		}
-		
-		siteurl = siteurl+top+skip+Order+filter;
-		
-		//將住宿資訊存在live.txt
-		String livefile = "live.txt";
-		getFilefromUrl(liveurl,livefile);
-		
-		File f2 = new File(livefile);
-		
-		FileInputStream file2= new FileInputStream(f2);
-		InputStreamReader input2 =new InputStreamReader(file2,"UTF-8");
-		
-		JSONTokener jt2 = new JSONTokener(input2);
-		
-		JSONArray jsonRealPrice2 = new JSONArray(jt2);
-		System.out.println("住宿資訊");
-		
-		for(int i = 0;i<jsonRealPrice2.length()&&i<10;i++)
-		{
-			String title=jsonRealPrice2.getJSONObject(i).getString("title");
-			System.out.println(title);
-			
-		}
-		
+		Liveinfo li = test.getLiveinfo();
+		li.printtop10fromCity(City);
 	}
 	
 	/*
@@ -172,127 +349,10 @@ public class TEST1{
 		
 	}
 	
-	/*
-	獲取相關地區的美食資訊
-	取得第一個Element的名稱
-	*/
-	public String getFirstFoodinfofromCity(String City)throws JSONException, IOException
-	{
-		//美食Open data url
-		String foodurl="http://data.coa.gov.tw/od/data/api/eir01/?$format=json";
-		//要取前幾筆資料
-		 String top="&$top=";
-		 //要跳過幾筆資料
-		 String skip="&$skip=";
-		 //要以什麼做排序
-		 String Order="&$orderby=";
-		 //篩選某地區
-		 String filter="&$filter=";
-		  //中文字轉UTF-8格式
-		 City = java.net.URLEncoder.encode(City,"UTF-8");
-		 
-		 //篩選條件設定為City
-		 filter+="address+like+";
-		 filter+=City;
-		 foodurl = foodurl+top+skip+Order+filter;
 	
-		//將美食資訊存在food.txt
-		String foodfile = "food.txt";
-		getFilefromUrl(foodurl,foodfile);
-		
-		
-		File f = new File(foodfile);
-		
-		FileInputStream file= new FileInputStream(f);
-		InputStreamReader input =new InputStreamReader(file,"UTF-8");
-		
-		JSONTokener jt = new JSONTokener(input);
-		
-		JSONArray jsonRealPrice = new JSONArray(jt);
-		
-		String title=jsonRealPrice.getJSONObject(0).getString("title");
-		 
-		 return title;
-	}
-	/*
-	獲取相關地區的景點資訊
-	取得第一個Element的名稱
-	*/
-	public String getFirstSiteinfofromCity(String City)throws JSONException, IOException
-	{
-		//景點Open data url
-		 String siteurl = "http://data.coa.gov.tw/od/data/api/eir04/?$format=json";
-		 //要取前幾筆資料
-		 String top="&$top=";
-		 //要跳過幾筆資料
-		 String skip="&$skip=";
-		 //要以什麼做排序
-		 String Order="&$orderby=";
-		 //篩選某地區
-		 String filter="&$filter=";
-		  //中文字轉UTF-8格式
-		 City = java.net.URLEncoder.encode(City,"UTF-8");
-		 
-		 //篩選條件設定為City
-		 filter+="address+like+";
-		 filter+=City;
-		 
-		 siteurl = siteurl+top+skip+Order+filter;
-		
-		//將景點資訊存在site.txt
-		String sitefile = "site.txt";
-		getFilefromUrl(siteurl,sitefile);
-		
-		File f1 = new File(sitefile);
-		
-		FileInputStream file1= new FileInputStream(f1);
-		InputStreamReader input1 =new InputStreamReader(file1,"UTF-8");
-		
-		JSONTokener jt1 = new JSONTokener(input1);
-		
-		JSONArray jsonRealPrice1 = new JSONArray(jt1);
-		String title=jsonRealPrice1.getJSONObject(0).getString("title");
-		return title;
-	}
-	/*
-	獲取相關地區的住宿資訊
-	取得第一個Element的名稱
-	*/
-	public String getFirstLiveinfofromCity(String City)throws JSONException, IOException
-	{
-		 //住宿Open data url
-		 String liveurl= "http://data.coa.gov.tw/od/data/api/eir02/?$format=json";
-		 //要取前幾筆資料
-		 String top="&$top=";
-		 //要跳過幾筆資料
-		 String skip="&$skip=";
-		 //要以什麼做排序
-		 String Order="&$orderby=";
-		 //篩選某地區
-		 String filter="&$filter=";
-		  //中文字轉UTF-8格式
-		 City = java.net.URLEncoder.encode(City,"UTF-8");
-		 
-		 //篩選條件設定為City
-		 filter+="address+like+";
-		 filter+=City;
-		 liveurl = liveurl+top+skip+Order+filter;
-		
-		//將住宿資訊存在live.txt
-		String livefile = "live.txt";
-		getFilefromUrl(liveurl,livefile);
-		
-		File f2 = new File(livefile);
-		
-		FileInputStream file2= new FileInputStream(f2);
-		InputStreamReader input2 =new InputStreamReader(file2,"UTF-8");
-		
-		JSONTokener jt2 = new JSONTokener(input2);
-		
-		JSONArray jsonRealPrice2 = new JSONArray(jt2);
-		 String title=jsonRealPrice2.getJSONObject(0).getString("title");
-		return title;
-	}
+	
+	
+	
 	
 }
 
