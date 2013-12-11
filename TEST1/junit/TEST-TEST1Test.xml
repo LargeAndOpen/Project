@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Kevin-PC" name="TEST1Test" tests="3" time="1.742" timestamp="2013-12-11T15:22:36">
+<testsuite errors="0" failures="0" hostname="Kevin-PC" name="TEST1Test" tests="3" time="6.25" timestamp="2013-12-11T16:40:35">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc." />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
@@ -58,12 +58,13 @@
     <property name="path.separator" value=";" />
     <property name="ant.file.type.TEST1" value="file" />
     <property name="java.vm.version" value="19.1-b02" />
-    <property name="user.variant" value="" />
     <property name="env.USERPROFILE" value="C:\Users\Kevin" />
+    <property name="user.variant" value="" />
     <property name="ant.library.dir" value="D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib" />
     <property name="env.LIB" value="C:\Program Files (x86)\GTK\LIB;" />
     <property name="junit.output.dir" value="junit" />
     <property name="ant.file.TEST1" value="C:\Users\Kevin\git\Large\TEST1\build.xml" />
+    <property name="env.JAVA_HOME" value="C:\Program Files\Java\jdk1.6.0_24" />
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
     <property name="env.TMP" value="C:\Users\Kevin\AppData\Local\Temp" />
     <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
@@ -72,31 +73,31 @@
     <property name="user.home" value="C:\Users\Kevin" />
     <property name="target" value="1.6" />
     <property name="env.ProgramData" value="C:\ProgramData" />
-    <property name="env.SESSIONNAME" value="Console" />
     <property name="env.ProgramFiles(x86)" value="C:\Program Files (x86)" />
+    <property name="env.SESSIONNAME" value="Console" />
     <property name="java.specification.vendor" value="Sun Microsystems Inc." />
-    <property name="java.library.path" value="C:\Program Files\Java\jre6\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\PROGRA~2\GTK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;D:\暫存區\Windows7Master1.21\Windows7Master;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Common Files\Thunder Network\KanKan\Codecs;%QUARTUS_ROOTDIR%\bin;D:\Java\jdk1.6.0_21\bin;D:\CYGWIN\bin;D:\pc2;D:\Python32;D:\Program Files\MATLAB\R2012a\runtime\win64;D:\Program Files\MATLAB\R2012a\bin;" />
-    <property name="env.NUMBER_OF_PROCESSORS" value="4" />
     <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="env.NUMBER_OF_PROCESSORS" value="4" />
+    <property name="java.library.path" value="C:\Program Files\Java\jre6\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\PROGRA~2\GTK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;D:\暫存區\Windows7Master1.21\Windows7Master;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Common Files\Thunder Network\KanKan\Codecs;%QUARTUS_ROOTDIR%\bin;C:\Program Files\Java\jdk1.6.0_24\bin;D:\CYGWIN\bin;D:\pc2;D:\Python32;D:\Program Files\MATLAB\R2012a\runtime\win64;D:\Program Files\MATLAB\R2012a\bin;" />
     <property name="java.vm.vendor" value="Sun Microsystems Inc." />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.3 compiled on February 26 2012" />
     <property name="java.class.path" value="C:\Users\Kevin\git\Large\TEST1\bin;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.junit_4.10.0.v4_10_0_v20120426-0900\junit.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.hamcrest.core_1.1.0.v20090501071000.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-launcher.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-junit.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-junit4.jar" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
-    <property name="env.LOGONSERVER" value="\\KEVIN-PC" />
     <property name="env.windir" value="C:\Windows" />
-    <property name="java.vm.specification.version" value="1.0" />
+    <property name="env.LOGONSERVER" value="\\KEVIN-PC" />
     <property name="env.PROCESSOR_ARCHITECTURE" value="AMD64" />
+    <property name="java.vm.specification.version" value="1.0" />
     <property name="sun.os.patch.level" value="Service Pack 1" />
     <property name="sun.cpu.endian" value="little" />
     <property name="debuglevel" value="source,lines,vars" />
-    <property name="env.ProgramFiles" value="C:\Program Files" />
     <property name="env.ANT_HOME" value="D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730" />
+    <property name="env.ProgramFiles" value="C:\Program Files" />
     <property name="env.PROCESSOR_REVISION" value="2505" />
     <property name="eclipse.pdebuild.home" value="/D:/Kevin/程式應用/程式設計/eclipse/plugins/org.eclipse.pde.build_3.8.1.v20120725-202643/./" />
     <property name="java.io.tmpdir" value="C:\Users\Kevin\AppData\Local\Temp\" />
-    <property name="env.VBOX_INSTALL_PATH" value="D:\Program Files\Oracle\VirtualBox\" />
     <property name="env.CommonProgramFiles(x86)" value="C:\Program Files (x86)\Common Files" />
+    <property name="env.VBOX_INSTALL_PATH" value="D:\Program Files\Oracle\VirtualBox\" />
     <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
     <property name="env.SystemRoot" value="C:\Windows" />
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
@@ -107,22 +108,22 @@
     <property name="line.separator" value="&#xd;&#xa;" />
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
     <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC" />
-    <property name="env.Path" value="C:\PROGRA~2\GTK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;D:\暫存區\Windows7Master1.21\Windows7Master;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Common Files\Thunder Network\KanKan\Codecs;%QUARTUS_ROOTDIR%\bin;D:\Java\jdk1.6.0_21\bin;D:\CYGWIN\bin;D:\pc2;D:\Python32;D:\Program Files\MATLAB\R2012a\runtime\win64;D:\Program Files\MATLAB\R2012a\bin;" />
+    <property name="env.Path" value="C:\PROGRA~2\GTK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;D:\暫存區\Windows7Master1.21\Windows7Master;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Common Files\Thunder Network\KanKan\Codecs;%QUARTUS_ROOTDIR%\bin;C:\Program Files\Java\jdk1.6.0_24\bin;D:\CYGWIN\bin;D:\pc2;D:\Python32;D:\Program Files\MATLAB\R2012a\runtime\win64;D:\Program Files\MATLAB\R2012a\bin;" />
     <property name="basedir" value="C:\Users\Kevin\git\Large\TEST1" />
     <property name="ant.java.version" value="1.6" />
     <property name="ant.core.lib" value="D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant.jar" />
     <property name="env.USERNAME" value="Kevin" />
-    <property name="source" value="1.6" />
     <property name="env.SystemDrive" value="C:" />
+    <property name="source" value="1.6" />
     <property name="file.encoding" value="MS950" />
     <property name="env.USERDOMAIN" value="Kevin-PC" />
     <property name="java.specification.version" value="1.6" />
     <property name="ant.project.invoked-targets" value="main" />
     <property name="env.PROCESSOR_LEVEL" value="6" />
   </properties>
-  <testcase classname="TEST1Test" name="testGetFirstFoodinfofromCity" time="0.539" />
-  <testcase classname="TEST1Test" name="testGetFirstSiteinfofromCity" time="0.649" />
-  <testcase classname="TEST1Test" name="testGetFirstLiveinfofromCity" time="0.496" />
+  <testcase classname="TEST1Test" name="testGetFirstFoodinfofromCity" time="1.903" />
+  <testcase classname="TEST1Test" name="testGetFirstSiteinfofromCity" time="3.823" />
+  <testcase classname="TEST1Test" name="testGetFirstLiveinfofromCity" time="0.418" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
