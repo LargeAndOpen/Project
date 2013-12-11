@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="TEST1">
+<project basedir="." default="main" name="TEST1">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="D:/Kevin/程式應用/程式設計/eclipse"/>
     <property name="junit.output.dir" value="junit"/>
@@ -13,6 +13,8 @@
     <property name="source" value="1.6"/>
     <property name="dist" location="dist"/>
     <property name="main-class" value="TEST1"/>
+    
+    
     
     <path id="JUnit 4.libraryclasspath">
         <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar"/>
@@ -46,6 +48,11 @@
         </javac>
     </target>
     
+    <!-- 執行 -->
+    <target name="EXEC" depends="dist">
+        <java jar="${dist}\lib\${ant.project.name}.jar" fork="true"/>
+    </target>
+    
     <target name="dist" depends="build-subprojects,build-project" description="generate the distribution" >
         <!-- 創建放置jar檔目錄 -->
         <mkdir dir="${dist}/lib"/>
@@ -57,6 +64,8 @@
             </manifest>
         </jar>
     </target>
+    
+    
     
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
@@ -93,4 +102,6 @@
             <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
     </target>
+    
+    <target name="main" depends="EXEC,TEST1Test"/>
 </project>
