@@ -92,7 +92,7 @@
     <!-- JUnit測試 -->
     <target name="TEST1Test">
         <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
+        <junit fork="yes" printsummary="on">
             <formatter type="xml"/>
             <test name="TEST1Test" todir="${junit.output.dir}"/>
             <classpath refid="TEST1.classpath"/>
@@ -109,5 +109,5 @@
         </junitreport>
     </target>
     
-    <target name="main" depends="EXEC,TEST1Test"/>
+    <target name="main" depends="EXEC,TEST1Test,junitreport"/>
 </project>

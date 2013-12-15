@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Kevin-PC" name="TEST1Test" tests="3" time="6.25" timestamp="2013-12-11T16:40:35">
+<testsuite errors="0" failures="0" hostname="Kevin-PC" name="TEST1Test" tests="3" time="2.568" timestamp="2013-12-15T09:24:43">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc." />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
@@ -121,9 +121,9 @@
     <property name="ant.project.invoked-targets" value="main" />
     <property name="env.PROCESSOR_LEVEL" value="6" />
   </properties>
-  <testcase classname="TEST1Test" name="testGetFirstFoodinfofromCity" time="1.903" />
-  <testcase classname="TEST1Test" name="testGetFirstSiteinfofromCity" time="3.823" />
-  <testcase classname="TEST1Test" name="testGetFirstLiveinfofromCity" time="0.418" />
+  <testcase classname="TEST1Test" name="testGetFirstFoodinfofromCity" time="0.612" />
+  <testcase classname="TEST1Test" name="testGetFirstSiteinfofromCity" time="1.541" />
+  <testcase classname="TEST1Test" name="testGetFirstLiveinfofromCity" time="0.345" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

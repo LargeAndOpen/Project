@@ -305,7 +305,8 @@ public class TEST1{
 		 System.out.print("請輸入城市:");
 		 
 		 //使用者輸入要搜尋的城市
-		 String City="台北市";//buf.readLine();
+		 String City="高雄市";
+		 //String City=buf.readLine();
 		
 		 TEST1 test = new TEST1();
 		 Foodinfo fi = test.getFoodinfo();
