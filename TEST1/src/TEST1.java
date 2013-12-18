@@ -1,12 +1,11 @@
-
 /*
-¥Øªº:®Ú¾Ú¿é¤Jªº¦a°Ï¿é¥X¬Û¹ïÀ³ªº¸ê®Æ
-¿é¤J:¦a°Ï
-¿é¥X:
-1.¦³Ãö³o­Ó¦a°Ïªº¬ü­¹¸ê°T
-2.¦³Ãö³o­Ó¦a°Ïªº´ºÂI¸ê°T
-3.¦³Ãö³o­Ó¦a°Ïªº¦í±J¸ê°T
-µù:·|¿é¥X«e10µ§¸ê®Æ¡A¤£¨¬10µ§«h¿é¥X¨ì¸ê®Æµ²§À¬°¤î
+ï¿½Øªï¿½:ï¿½Ú¾Ú¿ï¿½ï¿½Jï¿½ï¿½ï¿½aï¿½Ï¿ï¿½ï¿½Xï¿½Û¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½J:ï¿½aï¿½ï¿½
+ï¿½ï¿½ï¿½X:
+1.ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ó¦aï¿½Ïªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T
+2.ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ó¦aï¿½Ïªï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½T
+3.ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ó¦aï¿½Ïªï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½T
+ï¿½ï¿½:ï¿½|ï¿½ï¿½ï¿½Xï¿½e10ï¿½ï¿½ï¿½ï¿½ï¿½Æ¡Aï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 Pattern:
 public String getFirstFoodinfofromCity(String City)
 =>get first element from food infomation for selected City
@@ -29,30 +28,30 @@ public class TEST1{
 	{
 		
 		/*
-		Àò¨ú¬ÛÃö¦a°Ïªº¬ü­¹¸ê°T
-		¨ú±o²Ä¤@­ÓElementªº¦WºÙ
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½aï¿½Ïªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T
+		ï¿½ï¿½ï¿½oï¿½Ä¤@ï¿½ï¿½Elementï¿½ï¿½ï¿½Wï¿½ï¿½
 		*/
 		public String getFirstFoodinfofromCity(String City)throws JSONException, IOException
 		{
-			//¬ü­¹Open data url
-			String foodurl="http://data.coa.gov.tw/od/data/api/eir01/?$format=json";
-			//­n¨ú«e´Xµ§¸ê®Æ
+			//ï¿½ï¿½ï¿½ï¿½Open data url
+			String foodurl="http://data.coa.gov.tw:8080/od/data/api/eir01/?$format=json";
+			//ï¿½nï¿½ï¿½ï¿½eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //ï¿½nï¿½ï¿½ï¿½Lï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //ï¿½nï¿½Hï¿½ï¿½ï¿½ò°µ±Æ§ï¿½
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ï¿½zï¿½ï¿½ï¿½Yï¿½aï¿½ï¿½
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½UTF-8ï¿½æ¦¡
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½City
 			 filter+="address+like+";
 			 filter+=City;
 			 foodurl = foodurl+top+skip+Order+filter;
 		
-			//±N¬ü­¹¸ê°T¦s¦bfood.txt
+			//ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½sï¿½bfood.txt
 			String foodfile = "food.txt";
 			getFilefromUrl(foodurl,foodfile);
 			
@@ -72,25 +71,25 @@ public class TEST1{
 		}
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
-			//¬ü­¹Open data url
-			String foodurl="http://data.coa.gov.tw/od/data/api/eir01/?$format=json";
-			//­n¨ú«e´Xµ§¸ê®Æ
+			//ï¿½ï¿½ï¿½ï¿½Open data url
+			String foodurl="http://data.coa.gov.tw:8080/od/data/api/eir01/?$format=json";
+			//ï¿½nï¿½ï¿½ï¿½eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //ï¿½nï¿½ï¿½ï¿½Lï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //ï¿½nï¿½Hï¿½ï¿½ï¿½ò°µ±Æ§ï¿½
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ï¿½zï¿½ï¿½ï¿½Yï¿½aï¿½ï¿½
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½UTF-8ï¿½æ¦¡
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½City
 			 filter+="address+like+";
 			 filter+=City;
 			 foodurl = foodurl+top+skip+Order+filter;
 		
-			//±N¬ü­¹¸ê°T¦s¦bfood.txt
+			//ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½sï¿½bfood.txt
 			String foodfile = "food.txt";
 			getFilefromUrl(foodurl,foodfile);
 			File f = new File(foodfile);
@@ -101,7 +100,7 @@ public class TEST1{
 			JSONTokener jt = new JSONTokener(input);
 			
 			JSONArray jsonRealPrice = new JSONArray(jt);
-			System.out.println("¬ü­¹¸ê°T");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T");
 			for(int i = 0;i<jsonRealPrice.length()&&i<10;i++)
 			{
 				String title=jsonRealPrice.getJSONObject(i).getString("title");
@@ -118,31 +117,31 @@ public class TEST1{
 	public class Siteinfo
 	{
 		/*
-		Àò¨ú¬ÛÃö¦a°Ïªº´ºÂI¸ê°T
-		¨ú±o²Ä¤@­ÓElementªº¦WºÙ
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½aï¿½Ïªï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½T
+		ï¿½ï¿½ï¿½oï¿½Ä¤@ï¿½ï¿½Elementï¿½ï¿½ï¿½Wï¿½ï¿½
 		*/
 		public String getFirstSiteinfofromCity(String City)throws JSONException, IOException
 		{
-			//´ºÂIOpen data url
-			 String siteurl = "http://data.coa.gov.tw/od/data/api/eir04/?$format=json";
-			 //­n¨ú«e´Xµ§¸ê®Æ
+			//ï¿½ï¿½ï¿½IOpen data url
+			 String siteurl = "http://data.coa.gov.tw:8080/od/data/api/eir04/?$format=json";
+			 //ï¿½nï¿½ï¿½ï¿½eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //ï¿½nï¿½ï¿½ï¿½Lï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //ï¿½nï¿½Hï¿½ï¿½ï¿½ò°µ±Æ§ï¿½
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ï¿½zï¿½ï¿½ï¿½Yï¿½aï¿½ï¿½
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½UTF-8ï¿½æ¦¡
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½City
 			 filter+="address+like+";
 			 filter+=City;
 			 
 			 siteurl = siteurl+top+skip+Order+filter;
 			
-			//±N´ºÂI¸ê°T¦s¦bsite.txt
+			//ï¿½Nï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Tï¿½sï¿½bsite.txt
 			String sitefile = "site.txt";
 			getFilefromUrl(siteurl,sitefile);
 			
@@ -160,26 +159,26 @@ public class TEST1{
 		
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
-			//´ºÂIOpen data url
-			 String siteurl = "http://data.coa.gov.tw/od/data/api/eir04/?$format=json";
-			 //­n¨ú«e´Xµ§¸ê®Æ
+			//ï¿½ï¿½ï¿½IOpen data url
+			 String siteurl = "http://data.coa.gov.tw:8080/od/data/api/eir04/?$format=json";
+			 //ï¿½nï¿½ï¿½ï¿½eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //ï¿½nï¿½ï¿½ï¿½Lï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //ï¿½nï¿½Hï¿½ï¿½ï¿½ò°µ±Æ§ï¿½
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ï¿½zï¿½ï¿½ï¿½Yï¿½aï¿½ï¿½
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½UTF-8ï¿½æ¦¡
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½City
 			 filter+="address+like+";
 			 filter+=City;
 			 
 			 siteurl = siteurl+top+skip+Order+filter;
 			
-			//±N´ºÂI¸ê°T¦s¦bsite.txt
+			//ï¿½Nï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½Tï¿½sï¿½bsite.txt
 			String sitefile = "site.txt";
 			getFilefromUrl(siteurl,sitefile);
 			
@@ -192,7 +191,7 @@ public class TEST1{
 			
 			JSONArray jsonRealPrice1 = new JSONArray(jt1);
 			
-			System.out.println("´ºÂI¸ê°T");
+			System.out.println("ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½T");
 			
 			for(int i = 0;i<jsonRealPrice1.length()&&i<10;i++)
 			{
@@ -211,30 +210,30 @@ public class TEST1{
 	public class Liveinfo
 	{
 		/*
-		Àò¨ú¬ÛÃö¦a°Ïªº¦í±J¸ê°T
-		¨ú±o²Ä¤@­ÓElementªº¦WºÙ
+		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½aï¿½Ïªï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½T
+		ï¿½ï¿½ï¿½oï¿½Ä¤@ï¿½ï¿½Elementï¿½ï¿½ï¿½Wï¿½ï¿½
 		*/
 		public String getFirstLiveinfofromCity(String City)throws JSONException, IOException
 		{
-			 //¦í±JOpen data url
-			 String liveurl= "http://data.coa.gov.tw/od/data/api/eir02/?$format=json";
-			 //­n¨ú«e´Xµ§¸ê®Æ
+			 //ï¿½ï¿½ï¿½JOpen data url
+			 String liveurl= "http://data.coa.gov.tw:8080/od/data/api/eir02/?$format=json";
+			 //ï¿½nï¿½ï¿½ï¿½eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //ï¿½nï¿½ï¿½ï¿½Lï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //ï¿½nï¿½Hï¿½ï¿½ï¿½ò°µ±Æ§ï¿½
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ï¿½zï¿½ï¿½ï¿½Yï¿½aï¿½ï¿½
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½UTF-8ï¿½æ¦¡
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½City
 			 filter+="address+like+";
 			 filter+=City;
 			 liveurl = liveurl+top+skip+Order+filter;
 			
-			//±N¦í±J¸ê°T¦s¦blive.txt
+			//ï¿½Nï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Tï¿½sï¿½blive.txt
 			String livefile = "live.txt";
 			getFilefromUrl(liveurl,livefile);
 			
@@ -251,25 +250,25 @@ public class TEST1{
 		}
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
-			//¦í±JOpen data url
-			 String liveurl= "http://data.coa.gov.tw/od/data/api/eir02/?$format=json";
-			 //­n¨ú«e´Xµ§¸ê®Æ
+			//ï¿½ï¿½ï¿½JOpen data url
+			 String liveurl= "http://data.coa.gov.tw:8080/od/data/api/eir02/?$format=json";
+			 //ï¿½nï¿½ï¿½ï¿½eï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //ï¿½nï¿½ï¿½ï¿½Lï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //ï¿½nï¿½Hï¿½ï¿½ï¿½ò°µ±Æ§ï¿½
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ï¿½zï¿½ï¿½ï¿½Yï¿½aï¿½ï¿½
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½ï¿½UTF-8ï¿½æ¦¡
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½wï¿½ï¿½City
 			 filter+="address+like+";
 			 filter+=City;
 			 liveurl = liveurl+top+skip+Order+filter;
 			
-			//±N¦í±J¸ê°T¦s¦blive.txt
+			//ï¿½Nï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Tï¿½sï¿½blive.txt
 			String livefile = "live.txt";
 			getFilefromUrl(liveurl,livefile);
 			
@@ -281,7 +280,7 @@ public class TEST1{
 			JSONTokener jt2 = new JSONTokener(input2);
 			
 			JSONArray jsonRealPrice2 = new JSONArray(jt2);
-			System.out.println("¦í±J¸ê°T");
+			System.out.println("ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½T");
 			
 			for(int i = 0;i<jsonRealPrice2.length()&&i<10;i++)
 			{
@@ -298,14 +297,14 @@ public class TEST1{
 	}
 	public static void main(String[] args)throws JSONException, IOException
 	{
-		 //¿é¤J
+		 //ï¿½ï¿½ï¿½J
 		 BufferedReader buf = new BufferedReader(
             new InputStreamReader(System.in)); 
 
-		 System.out.print("½Ð¿é¤J«°¥«:");
+		 System.out.print("ï¿½Ð¿ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½:");
 		 
-		 //¨Ï¥ÎªÌ¿é¤J­n·j´Mªº«°¥«
-		 String City="°ª¶¯¥«";
+		 //ï¿½Ï¥ÎªÌ¿ï¿½ï¿½Jï¿½nï¿½jï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		 String City="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 		 //String City=buf.readLine();
 		
 		 TEST1 test = new TEST1();
@@ -321,13 +320,13 @@ public class TEST1{
 	}
 	
 	/*
-	urlstring => ­n¤U¸üªººô§}
-	objfile =>¦s©ñªºÀÉ®×
+	urlstring => ï¿½nï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}
+	objfile =>ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½É®ï¿½
 	*/
 	public static void getFilefromUrl(String urlstring,String objfile)throws JSONException, IOException
 	{
 		 File desFile =new File(objfile);
-		//¦pªGÀÉ®×¤w¦s¦b §R°£­ì¨ÓªºÀÉ®× 
+		//ï¿½pï¿½Gï¿½É®×¤wï¿½sï¿½b ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½Óªï¿½ï¿½É®ï¿½ 
 		if (desFile.exists())
 			desFile.delete();
 		URL url = new URL( urlstring );
@@ -335,16 +334,16 @@ public class TEST1{
 		//buffer
 		byte[] data = new byte[1]; 
 		
-      //³]©w±µ¦¬¸ê®Æ¬y¨Ó·½ ,´N¬O­n¤U¸üªººô§}
+      //ï¿½]ï¿½wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬yï¿½Ó·ï¿½ ,ï¿½Nï¿½Oï¿½nï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½}
       BufferedInputStream bufferedInputStream = new BufferedInputStream( connection.getInputStream() );
-      //³]©w¡@Àx¦s ­n¤U¸üÀÉ®×ªº¦ì¸m. 
+      //ï¿½]ï¿½wï¿½@ï¿½xï¿½s ï¿½nï¿½Uï¿½ï¿½ï¿½É®×ªï¿½ï¿½ï¿½ï¿½m. 
       BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(desFile));
       while( bufferedInputStream.read(data) != -1) {
               bufferedOutputStream.write(data);
       }   
-	  // ±N½w½Ä°Ï¤¤ªº¸ê®Æ¥þ³¡¼g¥X 
+	  // ï¿½Nï¿½wï¿½Ä°Ï¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½gï¿½X 
       bufferedOutputStream.flush();
-	  // Ãö³¬¸ê®Æ¬y
+	  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬y
       bufferedInputStream.close(); 
       bufferedOutputStream.close(); 
 		
