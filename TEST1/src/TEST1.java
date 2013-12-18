@@ -329,6 +329,7 @@ public class TEST1{
 		//�p�G�ɮפw�s�b �R�����Ӫ��ɮ� 
 		if (desFile.exists())
 			desFile.delete();
+		try{
 		URL url = new URL( urlstring );
 		URLConnection connection = url.openConnection();
 		//buffer
@@ -346,7 +347,11 @@ public class TEST1{
 	  // �������Ƭy
       bufferedInputStream.close(); 
       bufferedOutputStream.close(); 
-		
+		}catch(Exception e)
+		{
+			System.out.println("Error! No Internet!");
+			System.exit(1);
+		}
 	}
 	
 	
