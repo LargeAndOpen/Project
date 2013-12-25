@@ -17,6 +17,11 @@ public String getFirstLiveinfofromCity(String City)
 */
 import java.io.*;
 import org.json.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.net.*;
@@ -24,10 +29,232 @@ import java.net.*;
 
 public class TEST1{
 	
+	// 連線
+	private Connection con;
 	
+	// 建立資料庫
+	public class Create_database{
+		
+		// Column Strings
+		private String[] cols = {"id","title","catalogs_id","address","phone","business_hrs","price","Description","route","tianmama","ImageUrl","sc_id","post_id","link","x","y","create_date","modify_date"};
+		private String[] cols2 = {"id","title","catalogs_id","address","phone","business_hrs","price","Description","route","ImageUrl","sc_id","post_id","link","x","y","create_date","modify_date"};
+		
+		// Urls
+		private String[] urls = {"http://data.coa.gov.tw:8080/od/data/api/eir01/?$format=json","http://data.coa.gov.tw:8080/od/data/api/eir04/?$format=json","http://data.coa.gov.tw:8080/od/data/api/eir02/?$format=json"};
+		
+		// Filename
+		private String[] files = {"food","site","live"};
+		
+		// 建立連線
+		private void start_link(){
+			
+			// 嘗試
+			try{
+				// 新的instance
+				//Class.forName("org.postgresql.Driver").newInstance();
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+				
+				// 資料庫位置及建立連線
+				//String url="jdbc:postgresql://210.61.10.89:9999/Team8";
+				String url="jdbc:mysql://localhost/large?characterEncoding=utf-8";
+				//con = DriverManager.getConnection(url,"Team8","LAO2013");
+				con = DriverManager.getConnection(url,"large","large");
+			}
+			// 例外處理
+			catch(Exception ee){
+				System.out.print(ee.getMessage());
+			}
+		}
+		
+		// 結束連線
+		private void end_link(){
+			
+			// 嘗試
+			try{
+				// 連線結束				
+				con.close();
+				
+			// 例外處理
+			}catch(Exception ee){
+				System.out.print(ee.getMessage());
+			}
+		}
+		
+		// 刪除舊有的Table
+		private void delete_tables(){
+			
+			// 嘗試
+			try{
+				// 敘述子
+				Statement st = con.createStatement();
+				
+				// 美食、景點、住宿
+				String sql;
+				sql = "DROP TABLE food;";
+				st.execute(sql);
+				sql = "DROP TABLE site;";
+				st.execute(sql);
+				sql = "DROP TABLE live;";
+				st.execute(sql);
+				st.close();
+				
+			// 例外處理
+			}catch(Exception ee){
+				System.out.print(ee.getMessage());
+			}
+		}
+		
+		// 建立新的Table
+		private void create_tables(){
+			
+			// 嘗試
+			try{
+				// 敘述子
+				Statement st = con.createStatement();
+				
+				// 美食、景點、住宿
+				String sql;
+				sql = "CREATE TABLE food(" +
+				      "id varchar(50) NOT NULL," +
+				      "title varchar(50) NOT NULL," +
+					  "catalogs_id varchar(30) NOT NULL," +
+					  "address varchar(100) NOT NULL," +
+					  "phone varchar(100) NOT NULL," +
+					  "business_hrs varchar(120) NOT NULL," +
+					  "price varchar(400) NOT NULL," +
+					  "Description varchar(1200) NOT NULL," +
+					  "route varchar(300) NOT NULL," +
+					  "tianmama varchar(10) NOT NULL," +
+					  "ImageUrl varchar(150) NOT NULL," +
+					  "sc_id varchar(2) NOT NULL," +
+					  "post_id varchar(5) NOT NULL," +
+					  "link varchar(150) NOT NULL," +
+					  "x varchar(60) NOT NULL," +
+					  "y varchar(60) NOT NULL," +
+					  "create_date varchar(30) NOT NULL," +
+					  "modify_date varchar(30) NOT NULL);";
+				st.execute(sql);
+				sql = "CREATE TABLE site(" +
+				      "id varchar(50) NOT NULL," +
+				      "title varchar(50) NOT NULL," +
+					  "catalogs_id varchar(30) NOT NULL," +
+					  "address varchar(100) NOT NULL," +
+					  "phone varchar(100) NOT NULL," +
+					  "business_hrs varchar(120) NOT NULL," +
+					  "price varchar(400) NOT NULL," +
+					  "Description varchar(1200) NOT NULL," +
+					  "route varchar(300) NOT NULL," +
+					  "tianmama varchar(10) NOT NULL," +
+					  "ImageUrl varchar(150) NOT NULL," +
+					  "sc_id varchar(2) NOT NULL," +
+					  "post_id varchar(5) NOT NULL," +
+					  "link varchar(150) NOT NULL," +
+					  "x varchar(60) NOT NULL," +
+					  "y varchar(60) NOT NULL," +
+					  "create_date varchar(30) NOT NULL," +
+					  "modify_date varchar(30) NOT NULL);";
+				st.execute(sql);
+				sql = "CREATE TABLE live(" +
+				      "id varchar(50) NOT NULL," +
+				      "title varchar(50) NOT NULL," +
+					  "catalogs_id varchar(30) NOT NULL," +
+					  "address varchar(100) NOT NULL," +
+					  "phone varchar(100) NOT NULL," +
+					  "business_hrs varchar(120) NOT NULL," +
+					  "price varchar(400) NOT NULL," +
+					  "Description varchar(1200) NOT NULL," +
+					  "route varchar(300) NOT NULL," +
+					  "ImageUrl varchar(150) NOT NULL," +
+					  "sc_id varchar(2) NOT NULL," +
+					  "post_id varchar(5) NOT NULL," +
+					  "link varchar(150) NOT NULL," +
+					  "x varchar(60) NOT NULL," +
+					  "y varchar(60) NOT NULL," +
+					  "create_date varchar(30) NOT NULL," +
+					  "modify_date varchar(30) NOT NULL);";
+				st.execute(sql);
+				st.close();
+				
+			// 例外處理
+			}catch(Exception ee){
+				System.out.print(ee.getMessage());
+			}
+		}
+	
+		// Parse資料並存進資料庫
+		private void update(){
+			
+			int i=0;
+			
+			// 嘗試
+			try{
+			
+				// 美食、景點、住宿
+				for(int seq=0;seq<3;seq++)
+				{
+					// 將資料寫入txt檔
+					getFilefromUrl(urls[seq],files[seq]+".txt");
+					File f = new File(files[seq]+".txt");
+					FileInputStream file= new FileInputStream(f);
+					InputStreamReader input =new InputStreamReader(file,"UTF-8");
+					
+					// SQL
+					String sql = "", tmp;
+					Statement st = con.createStatement();
+					
+					// JSON Parser
+					JSONTokener jt = new JSONTokener(input);
+					JSONArray item = new JSONArray(jt);
+					for(i = 0;i<item.length();i++)
+					{
+						// 所有欄位
+						sql="INSERT INTO "+files[seq]+" VALUES(";
+						
+						// 美食、景點
+						if(seq<2)
+						{
+							for(int j=0;j<cols.length;j++)
+							{
+								// 取得該欄位的資料
+								tmp=item.getJSONObject(i).getString(cols[j]);
+								tmp=tmp.replaceAll("\"", "\'");
+								sql+="\""+tmp+"\"";
+								if(j!=cols.length-1) sql+=",";
+							}
+						}
+						// 住宿
+						else
+						{
+							for(int j=0;j<cols2.length;j++)
+							{
+								// 取得該欄位的資料
+								tmp=item.getJSONObject(i).getString(cols2[j]);
+								tmp=tmp.replaceAll("\"", "\'");
+								sql+="\""+tmp+"\"";
+								if(j!=cols2.length-1) sql+=",";
+							}
+						}
+						sql+=");";
+						st.execute(sql);
+					}
+					st.close();
+				}
+				
+			// 例外處理
+			}catch(Exception ee){
+				System.out.println("i="+i);
+				System.out.println(ee.getMessage());
+			}
+		}
+	}
+	public Create_database getDatabase(){
+		Create_database db = new Create_database();
+		return db;
+	}
+ 	
+	// 美食資訊
 	public class Foodinfo
 	{
-		
 		/*
 		獲取相關地區的美食資訊
 		取得第一個Element的名稱
@@ -72,41 +299,30 @@ public class TEST1{
 		}
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
-			//美食Open data url
-			String foodurl="http://data.coa.gov.tw:8080/od/data/api/eir01/?$format=json";
-			//要取前幾筆資料
-			 String top="&$top=";
-			 //要跳過幾筆資料
-			 String skip="&$skip=";
-			 //要以什麼做排序
-			 String Order="&$orderby=";
-			 //篩選某地區
-			 String filter="&$filter=";
-			  //中文字轉UTF-8格式
-			 City = java.net.URLEncoder.encode(City,"UTF-8");
-			 
-			 //篩選條件設定為City
-			 filter+="address+like+";
-			 filter+=City;
-			 foodurl = foodurl+top+skip+Order+filter;
-		
-			//將美食資訊存在food.txt
-			String foodfile = "food.txt";
-			getFilefromUrl(foodurl,foodfile);
-			File f = new File(foodfile);
-			
-			FileInputStream file= new FileInputStream(f);
-			InputStreamReader input =new InputStreamReader(file,"UTF-8");
-			
-			JSONTokener jt = new JSONTokener(input);
-			
-			JSONArray jsonRealPrice = new JSONArray(jt);
-			System.out.println("美食資訊");
-			for(int i = 0;i<jsonRealPrice.length()&&i<10;i++)
-			{
-				String title=jsonRealPrice.getJSONObject(i).getString("title");
-				System.out.println(title);
+			try{
+				// 敘述子
+				Statement st = con.createStatement();
 				
+				// 符合該縣市的項目
+				String sql = "SELECT * FROM food WHERE address LIKE '%"+City+"%'";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 列出所有符合項目(最多前10個)
+				int i=0;
+				while (rs.next()&&i<10) {
+					
+					// 印出
+					System.out.println(rs.getString("title"));
+					
+					// 遞增
+					i++;
+				}
+				st.close();
+				
+			}catch(Exception ee){
+				System.out.println(ee.getMessage());
 			}
 		}
 	}
@@ -115,6 +331,8 @@ public class TEST1{
 		Foodinfo foodinfo = new Foodinfo();
 		return foodinfo;
 	}
+	
+	// 景點資訊
 	public class Siteinfo
 	{
 		/*
@@ -160,47 +378,31 @@ public class TEST1{
 		
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
-			//景點Open data url
-			 String siteurl = "http://data.coa.gov.tw:8080/od/data/api/eir04/?$format=json";
-			 //要取前幾筆資料
-			 String top="&$top=";
-			 //要跳過幾筆資料
-			 String skip="&$skip=";
-			 //要以什麼做排序
-			 String Order="&$orderby=";
-			 //篩選某地區
-			 String filter="&$filter=";
-			  //中文字轉UTF-8格式
-			 City = java.net.URLEncoder.encode(City,"UTF-8");
-			 
-			 //篩選條件設定為City
-			 filter+="address+like+";
-			 filter+=City;
-			 
-			 siteurl = siteurl+top+skip+Order+filter;
-			
-			//將景點資訊存在site.txt
-			String sitefile = "site.txt";
-			getFilefromUrl(siteurl,sitefile);
-			
-			File f1 = new File(sitefile);
-			
-			FileInputStream file1= new FileInputStream(f1);
-			InputStreamReader input1 =new InputStreamReader(file1,"UTF-8");
-			
-			JSONTokener jt1 = new JSONTokener(input1);
-			
-			JSONArray jsonRealPrice1 = new JSONArray(jt1);
-			
-			System.out.println("景點資訊");
-			
-			for(int i = 0;i<jsonRealPrice1.length()&&i<10;i++)
-			{
-				String title=jsonRealPrice1.getJSONObject(i).getString("title");
-				System.out.println(title);
+			try{
+				// 敘述子
+				Statement st = con.createStatement();
 				
+				// 符合該縣市的項目
+				String sql = "SELECT * FROM site WHERE address LIKE '%"+City+"%'";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 列出所有符合項目(最多前10個)
+				int i=0;
+				while (rs.next()&&i<10) {
+					
+					// 印出
+					System.out.println(rs.getString("title"));
+					
+					// 遞增
+					i++;
+				}
+				st.close();
+				
+			}catch(Exception ee){
+				System.out.println(ee.getMessage());
 			}
-			
 		}
 	}
 	public  Siteinfo getSiteinfo()
@@ -208,6 +410,8 @@ public class TEST1{
 		 Siteinfo siteinfo= new Siteinfo();
 		return siteinfo;
 	}
+	
+	// 住宿資訊
 	public class Liveinfo
 	{
 		/*
@@ -251,43 +455,30 @@ public class TEST1{
 		}
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
-			//住宿Open data url
-			 String liveurl= "http://data.coa.gov.tw:8080/od/data/api/eir02/?$format=json";
-			 //要取前幾筆資料
-			 String top="&$top=";
-			 //要跳過幾筆資料
-			 String skip="&$skip=";
-			 //要以什麼做排序
-			 String Order="&$orderby=";
-			 //篩選某地區
-			 String filter="&$filter=";
-			  //中文字轉UTF-8格式
-			 City = java.net.URLEncoder.encode(City,"UTF-8");
-			 
-			 //篩選條件設定為City
-			 filter+="address+like+";
-			 filter+=City;
-			 liveurl = liveurl+top+skip+Order+filter;
-			
-			//將住宿資訊存在live.txt
-			String livefile = "live.txt";
-			getFilefromUrl(liveurl,livefile);
-			
-			File f2 = new File(livefile);
-			
-			FileInputStream file2= new FileInputStream(f2);
-			InputStreamReader input2 =new InputStreamReader(file2,"UTF-8");
-			
-			JSONTokener jt2 = new JSONTokener(input2);
-			
-			JSONArray jsonRealPrice2 = new JSONArray(jt2);
-			System.out.println("住宿資訊");
-			
-			for(int i = 0;i<jsonRealPrice2.length()&&i<10;i++)
-			{
-				String title=jsonRealPrice2.getJSONObject(i).getString("title");
-				System.out.println(title);
+			try{
+				// 敘述子
+				Statement st = con.createStatement();
 				
+				// 符合該縣市的項目
+				String sql = "SELECT * FROM live WHERE address LIKE '%"+City+"%'";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 列出所有符合項目(最多前10個)
+				int i=0;
+				while (rs.next()&&i<10) {
+					
+					// 印出
+					System.out.println(rs.getString("title"));
+					
+					// 遞增
+					i++;
+				}
+				st.close();
+				
+			}catch(Exception ee){
+				System.out.println(ee.getMessage());
 			}
 		}
 	}
@@ -296,34 +487,55 @@ public class TEST1{
 		Liveinfo liveinfo= new Liveinfo();
 		return liveinfo;
 	}
+	
+	// 主函式
 	public static void main(String[] args)throws JSONException, IOException
 	{
-		 //輸入
-		 BufferedReader buf = new BufferedReader(
-            new InputStreamReader(System.in)); 
-
-		 System.out.print("請輸入城市:");
-		 
-		 //使用者輸入要搜尋的城市
-		 //String City="高雄市";
-		 String City=buf.readLine();
+		// 初始化class
+		TEST1 test = new TEST1();
 		
-		 TEST1 test = new TEST1();
-		 Foodinfo fi = test.getFoodinfo();
-		 
-		 fi.printtop10fromCity(City);
+		// 資料庫
+		Create_database db=test.getDatabase();
+		
+		// 起始連線
+		db.start_link();
+		
+		/* 只有更新時才要全部重建
+		// 刪除舊有Table並重新建立Table
+		db.delete_tables();
+		db.create_tables();
+		
+		// Parse資料並存進資料庫
+		db.update();
+		System.out.println("Finished all Tables");
+		/**/
+		
+		// Query
+		BufferedReader buf = new BufferedReader(new InputStreamReader(System.in)); 
 
+		System.out.print("請輸入城市:");
+		 
+		//使用者輸入要搜尋的城市
+		//String City="高雄市";
+		String City=buf.readLine();
+		
+		// 美食
+		Foodinfo fi = test.getFoodinfo();
+		fi.printtop10fromCity(City);
+		
+		// 景點
 		Siteinfo si = test.getSiteinfo();
 		si.printtop10fromCity(City);
-	
+		
+		// 住宿
 		Liveinfo li = test.getLiveinfo();
 		li.printtop10fromCity(City);
+		
+		// 結束連線
+		db.end_link();
 	}
 	
-	/*
-	urlstring => 要下載的網址
-	objfile =>存放的檔案
-	*/
+	/* urlstring => 要下載的網址, objfile =>存放的檔案*/
 	public static void getFilefromUrl(String urlstring,String objfile)throws JSONException, IOException
 	{
 		 File desFile =new File(objfile);
@@ -355,13 +567,6 @@ public class TEST1{
 			System.out.println("Error! No Internet!");
 			System.exit(1);
 		}
-		
 	}
-	
-	
-	
-	
-	
-	
 }
 
