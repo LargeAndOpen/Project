@@ -20,6 +20,8 @@
     <path id="TEST1.classpath">
         <pathelement location="bin"/>
         <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="postgresql-9.3-1100.jdbc4.jar"/>
+        <pathelement location="mysql-connector-java-5.1.28-bin.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -64,7 +66,9 @@
     
     <!-- 執行程式 -->
     <target name="EXEC" depends="dist">
-        <java jar="${dist}\lib\${ant.project.name}.jar" fork="true"/>
+        <java jar="${dist}\lib\${ant.project.name}.jar" fork="true">
+            <classpath refid="TEST1.classpath"/>
+        </java>
     </target>
     
 
@@ -109,5 +113,7 @@
         </junitreport>
     </target>
     
-    <target name="main" depends="EXEC,TEST1Test,junitreport"/>
+    <!-- JAR的classpath似乎抓不到，待解 -->
+    <!-- target name="main" depends="EXEC,TEST1Test,junitreport"/ -->
+    <target name="main" depends="TEST1,TEST1Test,junitreport"/>
 </project>

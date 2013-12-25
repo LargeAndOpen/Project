@@ -1,12 +1,12 @@
 
 /*
-¥Øªº:®Ú¾Ú¿é¤Jªº¦a°Ï¿é¥X¬Û¹ïÀ³ªº¸ê®Æ
-¿é¤J:¦a°Ï
-¿é¥X:
-1.¦³Ãö³o­Ó¦a°Ïªº¬ü­¹¸ê°T
-2.¦³Ãö³o­Ó¦a°Ïªº´ºÂI¸ê°T
-3.¦³Ãö³o­Ó¦a°Ïªº¦í±J¸ê°T
-µù:·|¿é¥X«e10µ§¸ê®Æ¡A¤£¨¬10µ§«h¿é¥X¨ì¸ê®Æµ²§À¬°¤î
+ç›®çš„:æ ¹æ“šè¼¸å…¥çš„åœ°å€è¼¸å‡ºç›¸å°æ‡‰çš„è³‡æ–™
+è¼¸å…¥:åœ°å€
+è¼¸å‡º:
+1.æœ‰é—œé€™å€‹åœ°å€çš„ç¾é£Ÿè³‡è¨Š
+2.æœ‰é—œé€™å€‹åœ°å€çš„æ™¯é»è³‡è¨Š
+3.æœ‰é—œé€™å€‹åœ°å€çš„ä½å®¿è³‡è¨Š
+è¨»:æœƒè¼¸å‡ºå‰10ç­†è³‡æ–™ï¼Œä¸è¶³10ç­†å‰‡è¼¸å‡ºåˆ°è³‡æ–™çµå°¾ç‚ºæ­¢
 Pattern:
 public String getFirstFoodinfofromCity(String City)
 =>get first element from food infomation for selected City
@@ -29,10 +29,10 @@ import java.net.*;
 
 public class TEST1{
 	
-	// ³s½u
+	// é€£ç·š
 	private Connection con;
 	
-	// «Ø¥ß¸ê®Æ®w
+	// å»ºç«‹è³‡æ–™åº«
 	public class Create_database{
 		
 		// Column Strings
@@ -45,50 +45,50 @@ public class TEST1{
 		// Filename
 		private String[] files = {"food","site","live"};
 		
-		// «Ø¥ß³s½u
+		// å»ºç«‹é€£ç·š
 		private void start_link(){
 			
-			// ¹Á¸Õ
+			// å˜—è©¦
 			try{
-				// ·sªºinstance
+				// æ–°çš„instance
 				//Class.forName("org.postgresql.Driver").newInstance();
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				
-				// ¸ê®Æ®w¦ì¸m¤Î«Ø¥ß³s½u
+				// è³‡æ–™åº«ä½ç½®åŠå»ºç«‹é€£ç·š
 				//String url="jdbc:postgresql://210.61.10.89:9999/Team8";
 				String url="jdbc:mysql://localhost/large?characterEncoding=utf-8";
 				//con = DriverManager.getConnection(url,"Team8","LAO2013");
 				con = DriverManager.getConnection(url,"large","large");
 			}
-			// ¨Ò¥~³B²z
+			// ä¾‹å¤–è™•ç†
 			catch(Exception ee){
 				System.out.print(ee.getMessage());
 			}
 		}
 		
-		// µ²§ô³s½u
+		// çµæŸé€£ç·š
 		private void end_link(){
 			
-			// ¹Á¸Õ
+			// å˜—è©¦
 			try{
-				// ³s½uµ²§ô				
+				// é€£ç·šçµæŸ				
 				con.close();
 				
-			// ¨Ò¥~³B²z
+			// ä¾‹å¤–è™•ç†
 			}catch(Exception ee){
 				System.out.print(ee.getMessage());
 			}
 		}
 		
-		// §R°£ÂÂ¦³ªºTable
+		// åˆªé™¤èˆŠæœ‰çš„Table
 		private void delete_tables(){
 			
-			// ¹Á¸Õ
+			// å˜—è©¦
 			try{
-				// ±Ô­z¤l
+				// æ•˜è¿°å­
 				Statement st = con.createStatement();
 				
-				// ¬ü­¹¡B´ºÂI¡B¦í±J
+				// ç¾é£Ÿã€æ™¯é»ã€ä½å®¿
 				String sql;
 				sql = "DROP TABLE food;";
 				st.execute(sql);
@@ -98,21 +98,21 @@ public class TEST1{
 				st.execute(sql);
 				st.close();
 				
-			// ¨Ò¥~³B²z
+			// ä¾‹å¤–è™•ç†
 			}catch(Exception ee){
 				System.out.print(ee.getMessage());
 			}
 		}
 		
-		// «Ø¥ß·sªºTable
+		// å»ºç«‹æ–°çš„Table
 		private void create_tables(){
 			
-			// ¹Á¸Õ
+			// å˜—è©¦
 			try{
-				// ±Ô­z¤l
+				// æ•˜è¿°å­
 				Statement st = con.createStatement();
 				
-				// ¬ü­¹¡B´ºÂI¡B¦í±J
+				// ç¾é£Ÿã€æ™¯é»ã€ä½å®¿
 				String sql;
 				sql = "CREATE TABLE food(" +
 				      "id varchar(50) NOT NULL," +
@@ -175,24 +175,24 @@ public class TEST1{
 				st.execute(sql);
 				st.close();
 				
-			// ¨Ò¥~³B²z
+			// ä¾‹å¤–è™•ç†
 			}catch(Exception ee){
 				System.out.print(ee.getMessage());
 			}
 		}
 	
-		// Parse¸ê®Æ¨Ã¦s¶i¸ê®Æ®w
+		// Parseè³‡æ–™ä¸¦å­˜é€²è³‡æ–™åº«
 		private void update(){
 			
 			int i=0;
 			
-			// ¹Á¸Õ
+			// å˜—è©¦
 			try{
 			
-				// ¬ü­¹¡B´ºÂI¡B¦í±J
+				// ç¾é£Ÿã€æ™¯é»ã€ä½å®¿
 				for(int seq=0;seq<3;seq++)
 				{
-					// ±N¸ê®Æ¼g¤JtxtÀÉ
+					// å°‡è³‡æ–™å¯«å…¥txtæª”
 					getFilefromUrl(urls[seq],files[seq]+".txt");
 					File f = new File(files[seq]+".txt");
 					FileInputStream file= new FileInputStream(f);
@@ -207,27 +207,27 @@ public class TEST1{
 					JSONArray item = new JSONArray(jt);
 					for(i = 0;i<item.length();i++)
 					{
-						// ©Ò¦³Äæ¦ì
+						// æ‰€æœ‰æ¬„ä½
 						sql="INSERT INTO "+files[seq]+" VALUES(";
 						
-						// ¬ü­¹¡B´ºÂI
+						// ç¾é£Ÿã€æ™¯é»
 						if(seq<2)
 						{
 							for(int j=0;j<cols.length;j++)
 							{
-								// ¨ú±o¸ÓÄæ¦ìªº¸ê®Æ
+								// å–å¾—è©²æ¬„ä½çš„è³‡æ–™
 								tmp=item.getJSONObject(i).getString(cols[j]);
 								tmp=tmp.replaceAll("\"", "\'");
 								sql+="\""+tmp+"\"";
 								if(j!=cols.length-1) sql+=",";
 							}
 						}
-						// ¦í±J
+						// ä½å®¿
 						else
 						{
 							for(int j=0;j<cols2.length;j++)
 							{
-								// ¨ú±o¸ÓÄæ¦ìªº¸ê®Æ
+								// å–å¾—è©²æ¬„ä½çš„è³‡æ–™
 								tmp=item.getJSONObject(i).getString(cols2[j]);
 								tmp=tmp.replaceAll("\"", "\'");
 								sql+="\""+tmp+"\"";
@@ -240,7 +240,7 @@ public class TEST1{
 					st.close();
 				}
 				
-			// ¨Ò¥~³B²z
+			// ä¾‹å¤–è™•ç†
 			}catch(Exception ee){
 				System.out.println("i="+i);
 				System.out.println(ee.getMessage());
@@ -252,34 +252,34 @@ public class TEST1{
 		return db;
 	}
  	
-	// ¬ü­¹¸ê°T
+	// ç¾é£Ÿè³‡è¨Š
 	public class Foodinfo
 	{
 		/*
-		Àò¨ú¬ÛÃö¦a°Ïªº¬ü­¹¸ê°T
-		¨ú±o²Ä¤@­ÓElementªº¦WºÙ
+		ç²å–ç›¸é—œåœ°å€çš„ç¾é£Ÿè³‡è¨Š
+		å–å¾—ç¬¬ä¸€å€‹Elementçš„åç¨±
 		*/
 		public String getFirstFoodinfofromCity(String City)throws JSONException, IOException
 		{
-			//¬ü­¹Open data url
+			//ç¾é£ŸOpen data url
 			String foodurl="http://data.coa.gov.tw:8080/od/data/api/eir01/?$format=json";
-			//­n¨ú«e´Xµ§¸ê®Æ
+			//è¦å–å‰å¹¾ç­†è³‡æ–™
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //è¦è·³éå¹¾ç­†è³‡æ–™
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //è¦ä»¥ä»€éº¼åšæ’åº
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ç¯©é¸æŸåœ°å€
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ä¸­æ–‡å­—è½‰UTF-8æ ¼å¼
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ç¯©é¸æ¢ä»¶è¨­å®šç‚ºCity
 			 filter+="address+like+";
 			 filter+=City;
 			 foodurl = foodurl+top+skip+Order+filter;
 		
-			//±N¬ü­¹¸ê°T¦s¦bfood.txt
+			//å°‡ç¾é£Ÿè³‡è¨Šå­˜åœ¨food.txt
 			String foodfile = "food.txt";
 			getFilefromUrl(foodurl,foodfile);
 			
@@ -300,23 +300,23 @@ public class TEST1{
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
 			try{
-				// ±Ô­z¤l
+				// æ•˜è¿°å­
 				Statement st = con.createStatement();
 				
-				// ²Å¦X¸Ó¿¤¥«ªº¶µ¥Ø
+				// ç¬¦åˆè©²ç¸£å¸‚çš„é …ç›®
 				String sql = "SELECT * FROM food WHERE address LIKE '%"+City+"%'";
 				
-				// ¨ú±oResponse
+				// å–å¾—Response
 				ResultSet rs = st.executeQuery(sql);
 				
-				// ¦C¥X©Ò¦³²Å¦X¶µ¥Ø(³Ì¦h«e10­Ó)
+				// åˆ—å‡ºæ‰€æœ‰ç¬¦åˆé …ç›®(æœ€å¤šå‰10å€‹)
 				int i=0;
 				while (rs.next()&&i<10) {
 					
-					// ¦L¥X
+					// å°å‡º
 					System.out.println(rs.getString("title"));
 					
-					// »¼¼W
+					// éå¢
 					i++;
 				}
 				st.close();
@@ -332,35 +332,35 @@ public class TEST1{
 		return foodinfo;
 	}
 	
-	// ´ºÂI¸ê°T
+	// æ™¯é»è³‡è¨Š
 	public class Siteinfo
 	{
 		/*
-		Àò¨ú¬ÛÃö¦a°Ïªº´ºÂI¸ê°T
-		¨ú±o²Ä¤@­ÓElementªº¦WºÙ
+		ç²å–ç›¸é—œåœ°å€çš„æ™¯é»è³‡è¨Š
+		å–å¾—ç¬¬ä¸€å€‹Elementçš„åç¨±
 		*/
 		public String getFirstSiteinfofromCity(String City)throws JSONException, IOException
 		{
-			//´ºÂIOpen data url
+			//æ™¯é»Open data url
 			 String siteurl = "http://data.coa.gov.tw:8080/od/data/api/eir04/?$format=json";
-			 //­n¨ú«e´Xµ§¸ê®Æ
+			 //è¦å–å‰å¹¾ç­†è³‡æ–™
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //è¦è·³éå¹¾ç­†è³‡æ–™
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //è¦ä»¥ä»€éº¼åšæ’åº
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ç¯©é¸æŸåœ°å€
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ä¸­æ–‡å­—è½‰UTF-8æ ¼å¼
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ç¯©é¸æ¢ä»¶è¨­å®šç‚ºCity
 			 filter+="address+like+";
 			 filter+=City;
 			 
 			 siteurl = siteurl+top+skip+Order+filter;
 			
-			//±N´ºÂI¸ê°T¦s¦bsite.txt
+			//å°‡æ™¯é»è³‡è¨Šå­˜åœ¨site.txt
 			String sitefile = "site.txt";
 			getFilefromUrl(siteurl,sitefile);
 			
@@ -379,23 +379,23 @@ public class TEST1{
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
 			try{
-				// ±Ô­z¤l
+				// æ•˜è¿°å­
 				Statement st = con.createStatement();
 				
-				// ²Å¦X¸Ó¿¤¥«ªº¶µ¥Ø
+				// ç¬¦åˆè©²ç¸£å¸‚çš„é …ç›®
 				String sql = "SELECT * FROM site WHERE address LIKE '%"+City+"%'";
 				
-				// ¨ú±oResponse
+				// å–å¾—Response
 				ResultSet rs = st.executeQuery(sql);
 				
-				// ¦C¥X©Ò¦³²Å¦X¶µ¥Ø(³Ì¦h«e10­Ó)
+				// åˆ—å‡ºæ‰€æœ‰ç¬¦åˆé …ç›®(æœ€å¤šå‰10å€‹)
 				int i=0;
 				while (rs.next()&&i<10) {
 					
-					// ¦L¥X
+					// å°å‡º
 					System.out.println(rs.getString("title"));
 					
-					// »¼¼W
+					// éå¢
 					i++;
 				}
 				st.close();
@@ -411,34 +411,34 @@ public class TEST1{
 		return siteinfo;
 	}
 	
-	// ¦í±J¸ê°T
+	// ä½å®¿è³‡è¨Š
 	public class Liveinfo
 	{
 		/*
-		Àò¨ú¬ÛÃö¦a°Ïªº¦í±J¸ê°T
-		¨ú±o²Ä¤@­ÓElementªº¦WºÙ
+		ç²å–ç›¸é—œåœ°å€çš„ä½å®¿è³‡è¨Š
+		å–å¾—ç¬¬ä¸€å€‹Elementçš„åç¨±
 		*/
 		public String getFirstLiveinfofromCity(String City)throws JSONException, IOException
 		{
-			 //¦í±JOpen data url
+			 //ä½å®¿Open data url
 			 String liveurl= "http://data.coa.gov.tw:8080/od/data/api/eir02/?$format=json";
-			 //­n¨ú«e´Xµ§¸ê®Æ
+			 //è¦å–å‰å¹¾ç­†è³‡æ–™
 			 String top="&$top=";
-			 //­n¸õ¹L´Xµ§¸ê®Æ
+			 //è¦è·³éå¹¾ç­†è³‡æ–™
 			 String skip="&$skip=";
-			 //­n¥H¤°»ò°µ±Æ§Ç
+			 //è¦ä»¥ä»€éº¼åšæ’åº
 			 String Order="&$orderby=";
-			 //¿z¿ï¬Y¦a°Ï
+			 //ç¯©é¸æŸåœ°å€
 			 String filter="&$filter=";
-			  //¤¤¤å¦rÂàUTF-8®æ¦¡
+			  //ä¸­æ–‡å­—è½‰UTF-8æ ¼å¼
 			 City = java.net.URLEncoder.encode(City,"UTF-8");
 			 
-			 //¿z¿ï±ø¥ó³]©w¬°City
+			 //ç¯©é¸æ¢ä»¶è¨­å®šç‚ºCity
 			 filter+="address+like+";
 			 filter+=City;
 			 liveurl = liveurl+top+skip+Order+filter;
 			
-			//±N¦í±J¸ê°T¦s¦blive.txt
+			//å°‡ä½å®¿è³‡è¨Šå­˜åœ¨live.txt
 			String livefile = "live.txt";
 			getFilefromUrl(liveurl,livefile);
 			
@@ -456,23 +456,23 @@ public class TEST1{
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
 			try{
-				// ±Ô­z¤l
+				// æ•˜è¿°å­
 				Statement st = con.createStatement();
 				
-				// ²Å¦X¸Ó¿¤¥«ªº¶µ¥Ø
+				// ç¬¦åˆè©²ç¸£å¸‚çš„é …ç›®
 				String sql = "SELECT * FROM live WHERE address LIKE '%"+City+"%'";
 				
-				// ¨ú±oResponse
+				// å–å¾—Response
 				ResultSet rs = st.executeQuery(sql);
 				
-				// ¦C¥X©Ò¦³²Å¦X¶µ¥Ø(³Ì¦h«e10­Ó)
+				// åˆ—å‡ºæ‰€æœ‰ç¬¦åˆé …ç›®(æœ€å¤šå‰10å€‹)
 				int i=0;
 				while (rs.next()&&i<10) {
 					
-					// ¦L¥X
+					// å°å‡º
 					System.out.println(rs.getString("title"));
 					
-					// »¼¼W
+					// éå¢
 					i++;
 				}
 				st.close();
@@ -488,24 +488,24 @@ public class TEST1{
 		return liveinfo;
 	}
 	
-	// ¥D¨ç¦¡
+	// ä¸»å‡½å¼
 	public static void main(String[] args)throws JSONException, IOException
 	{
-		// ªì©l¤Æclass
+		// åˆå§‹åŒ–class
 		TEST1 test = new TEST1();
 		
-		// ¸ê®Æ®w
+		// è³‡æ–™åº«
 		Create_database db=test.getDatabase();
 		
-		// °_©l³s½u
+		// èµ·å§‹é€£ç·š
 		db.start_link();
 		
-		/* ¥u¦³§ó·s®É¤~­n¥ş³¡­««Ø
-		// §R°£ÂÂ¦³Table¨Ã­«·s«Ø¥ßTable
+		/* åªæœ‰æ›´æ–°æ™‚æ‰è¦å…¨éƒ¨é‡å»º
+		// åˆªé™¤èˆŠæœ‰Tableä¸¦é‡æ–°å»ºç«‹Table
 		db.delete_tables();
 		db.create_tables();
 		
-		// Parse¸ê®Æ¨Ã¦s¶i¸ê®Æ®w
+		// Parseè³‡æ–™ä¸¦å­˜é€²è³‡æ–™åº«
 		db.update();
 		System.out.println("Finished all Tables");
 		/**/
@@ -513,33 +513,33 @@ public class TEST1{
 		// Query
 		BufferedReader buf = new BufferedReader(new InputStreamReader(System.in)); 
 
-		System.out.print("½Ğ¿é¤J«°¥«:");
+		System.out.print("è«‹è¼¸å…¥åŸå¸‚:");
 		 
-		//¨Ï¥ÎªÌ¿é¤J­n·j´Mªº«°¥«
-		//String City="°ª¶¯¥«";
-		String City=buf.readLine();
+		//ä½¿ç”¨è€…è¼¸å…¥è¦æœå°‹çš„åŸå¸‚
+		String City="é«˜é›„å¸‚";
+		//String City=buf.readLine();
 		
-		// ¬ü­¹
+		// ç¾é£Ÿ
 		Foodinfo fi = test.getFoodinfo();
 		fi.printtop10fromCity(City);
 		
-		// ´ºÂI
+		// æ™¯é»
 		Siteinfo si = test.getSiteinfo();
 		si.printtop10fromCity(City);
 		
-		// ¦í±J
+		// ä½å®¿
 		Liveinfo li = test.getLiveinfo();
 		li.printtop10fromCity(City);
 		
-		// µ²§ô³s½u
+		// çµæŸé€£ç·š
 		db.end_link();
 	}
 	
-	/* urlstring => ­n¤U¸üªººô§}, objfile =>¦s©ñªºÀÉ®×*/
+	/* urlstring => è¦ä¸‹è¼‰çš„ç¶²å€, objfile =>å­˜æ”¾çš„æª”æ¡ˆ*/
 	public static void getFilefromUrl(String urlstring,String objfile)throws JSONException, IOException
 	{
 		 File desFile =new File(objfile);
-		//¦pªGÀÉ®×¤w¦s¦b §R°£­ì¨ÓªºÀÉ®× 
+		//å¦‚æœæª”æ¡ˆå·²å­˜åœ¨ åˆªé™¤åŸä¾†çš„æª”æ¡ˆ 
 		if (desFile.exists())
 			desFile.delete();
 		try{
@@ -550,16 +550,16 @@ public class TEST1{
 		//buffer
 		byte[] data = new byte[1]; 
 		
-      //³]©w±µ¦¬¸ê®Æ¬y¨Ó·½ ,´N¬O­n¤U¸üªººô§}
+      //è¨­å®šæ¥æ”¶è³‡æ–™æµä¾†æº ,å°±æ˜¯è¦ä¸‹è¼‰çš„ç¶²å€
       BufferedInputStream bufferedInputStream = new BufferedInputStream( connection.getInputStream() );
-      //³]©w¡@Àx¦s ­n¤U¸üÀÉ®×ªº¦ì¸m. 
+      //è¨­å®šã€€å„²å­˜ è¦ä¸‹è¼‰æª”æ¡ˆçš„ä½ç½®. 
       BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(desFile));
       while( bufferedInputStream.read(data) != -1) {
               bufferedOutputStream.write(data);
       }   
-	  // ±N½w½Ä°Ï¤¤ªº¸ê®Æ¥ş³¡¼g¥X 
+	  // å°‡ç·©è¡å€ä¸­çš„è³‡æ–™å…¨éƒ¨å¯«å‡º 
       bufferedOutputStream.flush();
-	  // Ãö³¬¸ê®Æ¬y
+	  // é—œé–‰è³‡æ–™æµ
       bufferedInputStream.close(); 
       bufferedOutputStream.close(); 
 		}catch(Exception e)

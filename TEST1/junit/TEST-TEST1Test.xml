@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="Kevin-PC" name="TEST1Test" tests="3" time="2.568" timestamp="2013-12-15T09:24:43">
+<testsuite errors="0" failures="0" hostname="Kevin-PC" name="TEST1Test" tests="3" time="1.052" timestamp="2013-12-25T15:43:09">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc." />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
@@ -82,7 +82,7 @@
     <property name="java.vm.vendor" value="Sun Microsystems Inc." />
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.3 compiled on February 26 2012" />
-    <property name="java.class.path" value="C:\Users\Kevin\git\Large\TEST1\bin;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.junit_4.10.0.v4_10_0_v20120426-0900\junit.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.hamcrest.core_1.1.0.v20090501071000.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-launcher.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-junit.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-junit4.jar" />
+    <property name="java.class.path" value="C:\Users\Kevin\git\Large\TEST1\bin;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.junit_4.10.0.v4_10_0_v20120426-0900\junit.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.hamcrest.core_1.1.0.v20090501071000.jar;C:\Users\Kevin\git\Large\TEST1\postgresql-9.3-1100.jdbc4.jar;C:\Users\Kevin\git\Large\TEST1\mysql-connector-java-5.1.28-bin.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-launcher.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-junit.jar;D:\Kevin\程式應用\程式設計\eclipse\plugins\org.apache.ant_1.8.3.v20120321-1730\lib\ant-junit4.jar" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="env.windir" value="C:\Windows" />
     <property name="env.LOGONSERVER" value="\\KEVIN-PC" />
@@ -121,9 +121,9 @@
     <property name="ant.project.invoked-targets" value="main" />
     <property name="env.PROCESSOR_LEVEL" value="6" />
   </properties>
-  <testcase classname="TEST1Test" name="testGetFirstFoodinfofromCity" time="0.612" />
-  <testcase classname="TEST1Test" name="testGetFirstSiteinfofromCity" time="1.541" />
-  <testcase classname="TEST1Test" name="testGetFirstLiveinfofromCity" time="0.345" />
+  <testcase classname="TEST1Test" name="testGetFirstFoodinfofromCity" time="0.308" />
+  <testcase classname="TEST1Test" name="testGetFirstSiteinfofromCity" time="0.505" />
+  <testcase classname="TEST1Test" name="testGetFirstLiveinfofromCity" time="0.182" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
