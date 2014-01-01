@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.json.JSONArray;
@@ -70,7 +71,7 @@ public class Update {
 		}
 		
 		// 刪除舊有的Table
-		private void delete_tables(){
+		private void delete_tables(int i){
 			
 			// 嘗試
 			try{
@@ -79,90 +80,73 @@ public class Update {
 				
 				// 美食、景點、住宿
 				String sql;
-				sql = "DROP TABLE food;";
-				st.execute(sql);
-				sql = "DROP TABLE site;";
-				st.execute(sql);
-				sql = "DROP TABLE live;";
+				sql = "DROP TABLE "+files[i]+";";
 				st.execute(sql);
 				st.close();
 				
 			// 例外處理
 			}catch(Exception ee){
-				System.out.println("Error!!");
+				System.out.println("Delete Table Error!!");
 				System.out.println(ee.getMessage());
 			}
 		}
 		
 		// 建立新的Table
-		private void create_tables(){
+		private void create_tables(int i){
 			
 			// 嘗試
 			try{
 				// 敘述子
 				Statement st = con.createStatement();
-				
-				// 美食、景點、住宿
 				String sql;
-				sql = "CREATE TABLE food(" +
-				      "id varchar(50) NOT NULL," +
-				      "title varchar(50) NOT NULL," +
-					  "catalogs_id varchar(30) NOT NULL," +
-					  "address varchar(100) NOT NULL," +
-					  "phone varchar(100) NOT NULL," +
-					  "business_hrs varchar(120) NOT NULL," +
-					  "price varchar(400) NOT NULL," +
-					  "Description varchar(1200) NOT NULL," +
-					  "route varchar(300) NOT NULL," +
-					  "tianmama varchar(10) NOT NULL," +
-					  "ImageUrl varchar(150) NOT NULL," +
-					  "sc_id varchar(2) NOT NULL," +
-					  "post_id varchar(5) NOT NULL," +
-					  "link varchar(150) NOT NULL," +
-					  "x varchar(60) NOT NULL," +
-					  "y varchar(60) NOT NULL," +
-					  "create_date varchar(30) NOT NULL," +
-					  "modify_date varchar(30) NOT NULL);";
-				st.execute(sql);
-				sql = "CREATE TABLE site(" +
-				      "id varchar(50) NOT NULL," +
-				      "title varchar(50) NOT NULL," +
-					  "catalogs_id varchar(30) NOT NULL," +
-					  "address varchar(100) NOT NULL," +
-					  "phone varchar(100) NOT NULL," +
-					  "business_hrs varchar(120) NOT NULL," +
-					  "price varchar(400) NOT NULL," +
-					  "Description varchar(1200) NOT NULL," +
-					  "route varchar(300) NOT NULL," +
-					  "tianmama varchar(10) NOT NULL," +
-					  "ImageUrl varchar(150) NOT NULL," +
-					  "sc_id varchar(2) NOT NULL," +
-					  "post_id varchar(5) NOT NULL," +
-					  "link varchar(150) NOT NULL," +
-					  "x varchar(60) NOT NULL," +
-					  "y varchar(60) NOT NULL," +
-					  "create_date varchar(30) NOT NULL," +
-					  "modify_date varchar(30) NOT NULL);";
-				st.execute(sql);
-				sql = "CREATE TABLE live(" +
-				      "id varchar(50) NOT NULL," +
-				      "title varchar(50) NOT NULL," +
-					  "catalogs_id varchar(30) NOT NULL," +
-					  "address varchar(100) NOT NULL," +
-					  "phone varchar(100) NOT NULL," +
-					  "business_hrs varchar(120) NOT NULL," +
-					  "price varchar(400) NOT NULL," +
-					  "Description varchar(1200) NOT NULL," +
-					  "route varchar(300) NOT NULL," +
-					  "ImageUrl varchar(150) NOT NULL," +
-					  "sc_id varchar(2) NOT NULL," +
-					  "post_id varchar(5) NOT NULL," +
-					  "link varchar(150) NOT NULL," +
-					  "x varchar(60) NOT NULL," +
-					  "y varchar(60) NOT NULL," +
-					  "create_date varchar(30) NOT NULL," +
-					  "modify_date varchar(30) NOT NULL);";
-				st.execute(sql);
+				
+				// 美食、景點
+				if(i<2)
+				{
+					sql = "CREATE TABLE "+files[i]+"(" +
+						  "id varchar(50) NOT NULL," +
+					      "title varchar(50) NOT NULL," +
+						  "catalogs_id varchar(30) NOT NULL," +
+						  "address varchar(100) NOT NULL," +
+						  "phone varchar(100) NOT NULL," +
+						  "business_hrs varchar(120) NOT NULL," +
+						  "price varchar(400) NOT NULL," +
+						  "Description varchar(1200) NOT NULL," +
+						  "route varchar(300) NOT NULL," +
+						  "tianmama varchar(10) NOT NULL," +
+						  "ImageUrl varchar(150) NOT NULL," +
+						  "sc_id varchar(2) NOT NULL," +
+						  "post_id varchar(5) NOT NULL," +
+						  "link varchar(150) NOT NULL," +
+						  "x varchar(60) NOT NULL," +
+						  "y varchar(60) NOT NULL," +
+						  "create_date varchar(30) NOT NULL," +
+						  "modify_date varchar(30) NOT NULL);";
+						  st.execute(sql);
+				}
+				else
+				{
+					//住宿
+					sql = "CREATE TABLE "+files[i]+"(" +
+					      "id varchar(50) NOT NULL," +
+					      "title varchar(50) NOT NULL," +
+						  "catalogs_id varchar(30) NOT NULL," +
+						  "address varchar(100) NOT NULL," +
+						  "phone varchar(100) NOT NULL," +
+						  "business_hrs varchar(120) NOT NULL," +
+						  "price varchar(400) NOT NULL," +
+						  "Description varchar(1200) NOT NULL," +
+						  "route varchar(300) NOT NULL," +
+						  "ImageUrl varchar(150) NOT NULL," +
+						  "sc_id varchar(2) NOT NULL," +
+						  "post_id varchar(5) NOT NULL," +
+						  "link varchar(150) NOT NULL," +
+						  "x varchar(60) NOT NULL," +
+						  "y varchar(60) NOT NULL," +
+						  "create_date varchar(30) NOT NULL," +
+						  "modify_date varchar(30) NOT NULL);";
+						  st.execute(sql);
+				}
 				st.close();
 
 			// 例外處理
@@ -184,7 +168,11 @@ public class Update {
 				for(int seq=0;seq<3;seq++)
 				{
 					// 將資料寫入txt檔
+					System.out.print("取得"+files[seq]+"資料中...");
 					getFilefromUrl(urls[seq],files[seq]+".txt");
+					System.out.println("完成");
+					
+					// 讀檔
 					File f = new File(files[seq]+".txt");
 					FileInputStream file= new FileInputStream(f);
 					InputStreamReader input =new InputStreamReader(file,"UTF-8");
@@ -196,6 +184,25 @@ public class Update {
 					// JSON Parser
 					JSONTokener jt = new JSONTokener(input);
 					JSONArray item = new JSONArray(jt);
+					
+					// 取得第一筆Parse的ID、第一筆資料庫內的ID
+					String id_net = item.getJSONObject(0).getString("id");
+					String id_dat = first(seq);
+					
+					// 資料不變
+					if(id_net.equals(id_dat))
+					{
+						System.out.println("資料未變動，不更新");
+						continue;
+					}
+					
+					// 刪除、建立資料表
+					System.out.println("資料需更新!");
+					delete_tables(seq);
+					create_tables(seq);
+
+					// 每筆資料
+					System.out.print("插入"+files[seq]+"至資料庫...");
 					for(i = 0;i<item.length();i++)
 					{
 						// 所有欄位
@@ -229,16 +236,44 @@ public class Update {
 						st.execute(sql);
 					}
 					st.close();
-					
+
 					// 提示完成訊息
-					System.out.println("完成"+files[seq]+"建立");
+					System.out.println("完成");
 				}
+				// 提示完成訊息
+				System.out.println("所有資料更新完畢");
 				
 			// 例外處理
 			}catch(Exception ee){
 				System.out.println("Error!!");
 				System.out.println(ee.getMessage());
 			}
+		}
+		
+		// 取得該table的第一筆ID
+		public String first(int i){
+			
+			// 嘗試
+			try{
+				// 敘述子
+				Statement st = con.createStatement();
+				
+				// 取出第一筆資料
+				String sql = "SELECT * FROM "+files[i]+" LIMIT 1;";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 回傳第一筆的id
+				rs.next();
+				return rs.getString("id");
+				
+			}catch(Exception ee){
+				System.out.println(ee.getMessage());
+			}
+			
+			// Error
+			return "QQ";
 		}
 	}
 	public Create_database getDatabase(){
@@ -257,15 +292,10 @@ public class Update {
 		
 		// 起始連線
 		db.start_link();
-		
-		// 刪除舊有Table並重新建立Table
-		db.delete_tables();
-		db.create_tables();
-		
-		// Parse資料並存進資料庫
-		db.update();
-		System.out.println("Finished all Tables");
 
+		// 檢查更新，並Parse資料、存進資料庫
+		db.update();
+		
 		// 結束連線
 		db.end_link();
 	}
