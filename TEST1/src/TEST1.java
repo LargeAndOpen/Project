@@ -51,14 +51,14 @@ public class TEST1{
 			// 嘗試
 			try{
 				// 新的instance
-				//Class.forName("org.postgresql.Driver").newInstance();
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
+				Class.forName("org.postgresql.Driver").newInstance();
+				//Class.forName("com.mysql.jdbc.Driver").newInstance();
 				
 				// 資料庫位置及建立連線
-				//String url="jdbc:postgresql://210.61.10.89:9999/Team8";
-				String url="jdbc:mysql://localhost/large?characterEncoding=utf-8";
-				//con = DriverManager.getConnection(url,"Team8","LAO2013");
-				con = DriverManager.getConnection(url,"large","large");
+				String url="jdbc:postgresql://210.61.10.89:9999/Team8";
+				//String url="jdbc:mysql://localhost/large?characterEncoding=utf-8";
+				con = DriverManager.getConnection(url,"Team8","LAO2013");
+				//con = DriverManager.getConnection(url,"large","large");
 			}
 			// 例外處理
 			catch(Exception ee){
@@ -217,8 +217,8 @@ public class TEST1{
 							{
 								// 取得該欄位的資料
 								tmp=item.getJSONObject(i).getString(cols[j]);
-								tmp=tmp.replaceAll("\"", "\'");
-								sql+="\""+tmp+"\"";
+								tmp=tmp.replaceAll("\'", "\"");
+								sql+="\'"+tmp+"\'";
 								if(j!=cols.length-1) sql+=",";
 							}
 						}
@@ -229,8 +229,8 @@ public class TEST1{
 							{
 								// 取得該欄位的資料
 								tmp=item.getJSONObject(i).getString(cols2[j]);
-								tmp=tmp.replaceAll("\"", "\'");
-								sql+="\""+tmp+"\"";
+								tmp=tmp.replaceAll("\'", "\"");
+								sql+="\'"+tmp+"\'";
 								if(j!=cols2.length-1) sql+=",";
 							}
 						}
@@ -511,6 +511,7 @@ public class TEST1{
 		/**/
 		
 		// Query
+		/**/
 		BufferedReader buf = new BufferedReader(new InputStreamReader(System.in)); 
 
 		System.out.print("請輸入城市:");
@@ -530,7 +531,7 @@ public class TEST1{
 		// 住宿
 		Liveinfo li = test.getLiveinfo();
 		li.printtop10fromCity(City);
-		
+		/**/
 		// 結束連線
 		db.end_link();
 	}
