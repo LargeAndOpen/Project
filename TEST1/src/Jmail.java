@@ -12,7 +12,7 @@ import javax.activation.*;
 import java.security.spec.X509EncodedKeySpec;
 
 public class Jmail {
-    public MimeMessage mimeMsg;  //要发送的email信息
+    public MimeMessage mimeMsg;  // 要發送的訊息
     private Session session;
     Properties props;
     private boolean needAuth=false;
@@ -20,7 +20,7 @@ public class Jmail {
     private String username="";
     private String password="";
     
-    private Multipart mp;  //存放邮件的title 内容和附件
+    private Multipart mp;  // 存放Email的標題內容和物件
     
     public Jmail(String stmp){
         setSmtpHost(stmp);
@@ -31,7 +31,7 @@ public class Jmail {
      * @param hostName
      */
     public void setSmtpHost(String hostName){
-        System.out.println("mail.stmp.host= "+hostName);
+        //System.out.println("mail.stmp.host= "+hostName);
         if(props==null){
             props=System.getProperties();
         }
@@ -40,13 +40,13 @@ public class Jmail {
     
     public boolean createMimeMessage(){
         try{
-            System.out.println("Session begin-----------");
+            //System.out.println("Session begin-----------");
             session=Session.getInstance(props,null);
         }catch(Exception e){
             System.out.println("Session.getInstance faild!"+e);
             return false;
         }
-        System.out.println("MimeMEssage begin---------!");
+        //System.out.println("MimeMEssage begin---------!");
         try{
             mimeMsg=new MimeMessage(session);
             mp=new MimeMultipart();
@@ -61,7 +61,7 @@ public class Jmail {
      * @param need
      */
     public void setNeedAuth(boolean need){
-        System.out.println(":mail.smtp.auth="+need);
+        //System.out.println(":mail.smtp.auth="+need);
         if(props==null){
             props=System.getProperties();
         }
@@ -87,7 +87,7 @@ public class Jmail {
      * @return boolean
      */
     public boolean setSubject(String mailSubject){
-        System.out.println("set title begin.");
+        //System.out.println("set title begin.");
         try{
             if(!mailSubject.equals("")&&mailSubject!=null){
                 mimeMsg.setSubject(mailSubject);
@@ -110,7 +110,7 @@ public class Jmail {
         }
         String file[];
         file=filename.split(";");
-        System.out.println("你有 "+file.length+" 个附件!");
+        System.out.println("你有 "+file.length+" 個附件!");
         try{
             for(int i=0;i<file.length;i++){
                 BodyPart bp=new MimeBodyPart();
@@ -131,7 +131,7 @@ public class Jmail {
      * @return
      */
     public boolean setFrom(String from){
-        System.out.println("Set From .");
+        //System.out.println("Set From .");
         try{
             mimeMsg.setFrom(new InternetAddress(from));
             return true;
@@ -145,7 +145,7 @@ public class Jmail {
      * @return
      */
     public boolean setTo(String to){
-        System.out.println("Set to.");
+        //System.out.println("Set to.");
         if(to==null||to.equals("")){
             return false;
         }
@@ -174,7 +174,7 @@ public class Jmail {
     
     
     /**
-     * 设置信的内容!
+     * 設置信件内容!
      * @param mailBody
      * @return boolean
      */
@@ -215,13 +215,12 @@ public class Jmail {
          try{
              mimeMsg.setContent(mp);
              mimeMsg.saveChanges();
-             System.out.println("正在SendMail.");
              Session mailSession=session.getInstance(props,null);
              Transport tp=mailSession.getTransport("smtp");
              tp.connect((String)props.getProperty("mail.stmp.host"),username,password);
              tp.sendMessage(mimeMsg,mimeMsg.getRecipients(Message.RecipientType.TO));
              //tp.sendMessage(mimeMsg,mimeMsg.getRecipients(Message.RecipientType.CC));
-             System.out.println("Send Mail 成功..");
+             //System.out.println("Send Mail 成功..");
              tp.close();
              return true;
          }catch(Exception e){

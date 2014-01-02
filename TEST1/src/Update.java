@@ -160,21 +160,27 @@ public class Update {
 		private void update(){
 			
 			int i=0;
-			boolean NeedtoUpdate = false; 
-			//set smtp server
+			
+			// 標記是否要更新
+			boolean NeedtoUpdate = false;
+			
+			// 設定 smtp server
 			Jmail sm=new Jmail("smtp.gmail.com");
-			 //enable startttls
-	    	sm.props.put("mail.smtp.starttls.enable", "true");
-	    	// 寄信者的信箱帳密
-	    	 sm.setNamePass(" largeteam8@gmail.com","largeeight");
-	    	// 主旨(可中文)
-	         sm.setSubject("LAO report");
-	         // 寄信人
-	         sm.setFrom("largeteam8@gmail.com");
+			sm.props.put("mail.smtp.starttls.enable", "true");
+			
+			// 寄信者的信箱帳密
+			sm.setNamePass(" largeteam8@gmail.com","largeeight");
+			
+			// 主旨(可中文)
+			sm.setSubject("LAO report");
+			
+			// 寄信人
+			sm.setFrom("largeteam8@gmail.com");
 	         
-	         // 收件人
-	         sm.setTo("zxc10806@yahoo.com.tw");
-	         String content = new String();
+			// 收件人
+			sm.setTo("kevinx6000@gmail.com");
+			String content = new String();
+			
 			// 嘗試
 			try{
 			
@@ -212,6 +218,7 @@ public class Update {
 					//需要更新
 					NeedtoUpdate = true;
 					content+=files[i]+"資料已更新<br>";
+					
 					// 刪除、建立資料表
 					System.out.println("資料需更新!");
 					delete_tables(seq);
@@ -258,18 +265,18 @@ public class Update {
 				}
 				// 提示完成訊息
 				System.out.println("所有資料更新完畢");
-				if(!NeedtoUpdate)
-					content+="無資料更新<br>";
-				 sm.setBody(content);
-				  sm.setNeedAuth(true);
+				if(!NeedtoUpdate) content+="無資料更新<br>";
+				
+				// 設定信件內容
+				sm.setBody(content);
+				sm.setNeedAuth(true);
+				
 				// 寄信
-			       boolean b=sm.setOut();
-			       if(b){
-			             System.out.println("\n邮件发送成功!!!!!");
-			         }
-			         else{
-			             System.out.println("邮件发送失败!!!!");
-			         }
+				System.out.print("正在嘗試發送Email...");
+				boolean b=sm.setOut();
+				if(b) System.out.println("發送成功!");
+				else System.out.println("發送失敗!");
+				
 			// 例外處理
 			}catch(Exception ee){
 				System.out.println("Error!!");
