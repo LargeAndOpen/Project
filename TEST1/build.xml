@@ -4,24 +4,34 @@
 
     <!-- 參數設定 -->
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="D:/Kevin/程式應用/程式設計/eclipse"/>
+    <property name="ECLIPSE_HOME" value="../../../桌面/eclipse"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     <property name="dist" location="dist"/>
     <property name="main-class" value="TEST1"/>
+    	
+	<path id="build-classpath">
+	    <fileset dir="${dist}/lib">
+	        <include name="*.jar"/>
+	    </fileset>
+	</path>
+	<manifestclasspath property="lib.list" jarfile="${dist}/lib/TEST1.jar">
+	    <classpath refid="build-classpath"/>
+	</manifestclasspath>
 
     <!-- Class Path設定 -->
     <path id="JUnit 4.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    	<pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+    	<pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
     <path id="TEST1.classpath">
         <pathelement location="bin"/>
         <path refid="JUnit 4.libraryclasspath"/>
         <pathelement location="postgresql-9.3-1100.jdbc4.jar"/>
         <pathelement location="mysql-connector-java-5.1.28-bin.jar"/>
+        <pathelement location="mail.jar"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -60,13 +70,14 @@
         <jar jarfile="${dist}/lib/${ant.project.name}.jar" basedir="bin">
             <manifest>
                 <attribute name="Main-Class" value="${main-class}" />
+				<attribute name="Class-Path" value="${lib.list}"/>
             </manifest>
         </jar>
     </target>
     
     <!-- 執行程式 -->
     <target name="EXEC" depends="dist">
-        <java jar="${dist}\lib\${ant.project.name}.jar" fork="true">
+        <java jar="${dist}/lib/${ant.project.name}.jar" fork="true">
             <classpath refid="TEST1.classpath"/>
         </java>
     </target>
@@ -114,6 +125,6 @@
     </target>
     
     <!-- JAR的classpath似乎抓不到，待解 -->
-    <!-- target name="main" depends="EXEC,TEST1Test,junitreport"/ -->
-    <target name="main" depends="TEST1,TEST1Test,junitreport"/>
+    <target name="main" depends="EXEC,TEST1Test,junitreport"/>
+    <!--target name="main" depends="TEST1,TEST1Test,junitreport"/-->
 </project>

@@ -484,7 +484,7 @@ public class TEST1{
 	
 	// 主函式
 	public static void main(String[] args)throws JSONException, IOException
-	{
+	{	
 		// 初始化class
 		TEST1 test = new TEST1();
 		
@@ -500,20 +500,19 @@ public class TEST1{
 		System.out.print("請輸入城市:");
 		 
 		//使用者輸入要搜尋的城市
-		//String City="高雄市";
-		String City=buf.readLine();
+		String City="高雄市";
 		
 		// 美食
 		Foodinfo fi = test.getFoodinfo();
-		fi.printResult(City);
+		fi.printtop10fromCity(City);
 		
 		// 景點
 		Siteinfo si = test.getSiteinfo();
-		si.printResult(City);
+		si.printtop10fromCity(City);
 		
 		// 住宿
 		Liveinfo li = test.getLiveinfo();
-		li.printResult(City);
+		li.printtop10fromCity(City);
 
 		// 結束連線
 		db.end_link();
