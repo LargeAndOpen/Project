@@ -32,6 +32,9 @@ public class TEST1{
 	// 連線
 	private Connection con;
 	
+	// 最大搜尋數量
+	public static final int MAX_QUERY = 10;
+	
 	// 建立資料庫
 	public class Create_database{
 		
@@ -148,6 +151,63 @@ public class TEST1{
 				System.out.println(ee.getMessage());
 			}
 		}
+		public void printResult(String City){
+
+			try{
+			
+				// 敘述子
+				Statement st = con.createStatement();
+				
+				// 符合該縣市的項目
+				String sql = "SELECT * FROM food WHERE address LIKE '%"+City+"%'";
+				
+				// 紀錄偏好
+				String prefer="";
+				
+				// Reading buffer
+				BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+				
+				// 不斷讀入偏好
+				System.out.println("美食搜尋: 請輸入偏好，一行一個，輸入'.'離開");
+				while(true)
+				{
+					// 偏好
+					prefer = buf.readLine();
+					
+					// 停止讀入
+					if(prefer.equals(".")) break;
+					
+					// 增加偏好搜尋
+					sql += " and Description LIKE '%"+prefer+"%'";
+				}
+				sql += ";";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 列出所有符合項目(最多前10個)
+				int i=0;
+				System.out.println("<美食資訊>");
+				while (rs.next()&&i<10) {
+					
+					// 印出名稱及地址
+					System.out.println("("+(i+1)+")--------------");
+					System.out.println("名稱: "+rs.getString("title"));
+					System.out.println("地址: "+rs.getString("address"));
+					
+					// 遞增
+					i++;
+				}
+				System.out.println("");
+				st.close();
+				
+			}catch(Exception ee){
+				
+				// 錯誤訊息
+				System.out.println("哇哩勒");
+			}
+		}
+		
 	}
 	public  Foodinfo getFoodinfo()
 	{
@@ -198,7 +258,6 @@ public class TEST1{
 			String title=jsonRealPrice1.getJSONObject(0).getString("title");
 			return title;
 		}
-		
 		public void printtop10fromCity(String City)throws JSONException, IOException
 		{
 			try{
@@ -225,6 +284,62 @@ public class TEST1{
 				
 			}catch(Exception ee){
 				System.out.println(ee.getMessage());
+			}
+		}
+		public void printResult(String City){
+
+			try{
+			
+				// 敘述子
+				Statement st = con.createStatement();
+				
+				// 符合該縣市的項目
+				String sql = "SELECT * FROM site WHERE address LIKE '%"+City+"%'";
+				
+				// 紀錄偏好
+				String prefer="";
+				
+				// Reading buffer
+				BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+				
+				// 不斷讀入偏好
+				System.out.println("景點搜尋: 請輸入偏好，一行一個，輸入'.'離開");
+				while(true)
+				{
+					// 偏好
+					prefer = buf.readLine();
+					
+					// 停止讀入
+					if(prefer.equals(".")) break;
+					
+					// 增加偏好搜尋
+					sql += " and Description LIKE '%"+prefer+"%'";
+				}
+				sql += ";";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 列出所有符合項目(最多前10個)
+				int i=0;
+				System.out.println("<景點資訊>");
+				while (rs.next()&&i<10) {
+					
+					// 印出名稱及地址
+					System.out.println("("+(i+1)+")--------------");
+					System.out.println("名稱: "+rs.getString("title"));
+					System.out.println("地址: "+rs.getString("address"));
+					
+					// 遞增
+					i++;
+				}
+				System.out.println("");
+				st.close();
+				
+			}catch(Exception ee){
+				
+				// 錯誤訊息
+				System.out.println("哇哩勒");
 			}
 		}
 	}
@@ -304,6 +419,62 @@ public class TEST1{
 				System.out.println(ee.getMessage());
 			}
 		}
+		public void printResult(String City){
+
+			try{
+			
+				// 敘述子
+				Statement st = con.createStatement();
+				
+				// 符合該縣市的項目
+				String sql = "SELECT * FROM live WHERE address LIKE '%"+City+"%'";
+				
+				// 紀錄偏好
+				String prefer="";
+				
+				// Reading buffer
+				BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+				
+				// 不斷讀入偏好
+				System.out.println("住宿搜尋: 請輸入偏好，一行一個，輸入'.'離開");
+				while(true)
+				{
+					// 偏好
+					prefer = buf.readLine();
+					
+					// 停止讀入
+					if(prefer.equals(".")) break;
+					
+					// 增加偏好搜尋
+					sql += " and Description LIKE '%"+prefer+"%'";
+				}
+				sql += ";";
+				
+				// 取得Response
+				ResultSet rs = st.executeQuery(sql);
+				
+				// 列出所有符合項目(最多前10個)
+				int i=0;
+				System.out.println("<住宿資訊>");
+				while (rs.next()&&i<10) {
+					
+					// 印出名稱及地址
+					System.out.println("("+(i+1)+")--------------");
+					System.out.println("名稱: "+rs.getString("title"));
+					System.out.println("地址: "+rs.getString("address"));
+					
+					// 遞增
+					i++;
+				}
+				System.out.println("");
+				st.close();
+				
+			}catch(Exception ee){
+				
+				// 錯誤訊息
+				System.out.println("哇哩勒");
+			}
+		}
 	}
 	public  Liveinfo getLiveinfo()
 	{
@@ -329,20 +500,20 @@ public class TEST1{
 		System.out.print("請輸入城市:");
 		 
 		//使用者輸入要搜尋的城市
-		String City="高雄市";
-		//String City=buf.readLine();
+		//String City="高雄市";
+		String City=buf.readLine();
 		
 		// 美食
 		Foodinfo fi = test.getFoodinfo();
-		fi.printtop10fromCity(City);
+		fi.printResult(City);
 		
 		// 景點
 		Siteinfo si = test.getSiteinfo();
-		si.printtop10fromCity(City);
+		si.printResult(City);
 		
 		// 住宿
 		Liveinfo li = test.getLiveinfo();
-		li.printtop10fromCity(City);
+		li.printResult(City);
 
 		// 結束連線
 		db.end_link();
